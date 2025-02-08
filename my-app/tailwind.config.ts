@@ -11,6 +11,8 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        form: "rgb(200, 200, 200)",
+        input: "rgb(250, 250, 250)" 
       },
     },
   },
