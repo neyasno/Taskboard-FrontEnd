@@ -32,7 +32,7 @@ const fetchApi = async ( path : string , method : RequestMethod , body = {} )=>{
     
 
     if(!response.ok){
-        throw new Error("Fetch Error:");
+        throw new Error(`${response.status}`);
     }
     
     return response.json()

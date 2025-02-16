@@ -1,6 +1,7 @@
 
 import dbConnect from "@/_server/dbConnect";
 import { User } from "@/_server/models/User";
+
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -21,11 +22,11 @@ export async function POST(req: Request) {
     const existingUser = await User.findOne({ email: body.email });
     if(existingUser){
       console.log("User exist")
-      return NextResponse.json({ error: `User exist`}, { status: 500 });
+      return NextResponse.json({ error: `User exist`}, { status: 409 });
     }
 
-    const newUser = await User.create(body);
-    return NextResponse.json({ message: "Creation success", user: newUser }, { status: 201 });
+    await User.create(body);
+    return NextResponse.json({ message: "Creation success"}, { status: 201 });
     
   } catch (error) {
     return NextResponse.json({ error: `Creation error: ${error}` }, { status: 500 });

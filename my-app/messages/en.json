@@ -14,7 +14,10 @@
         "password": "Password",
         "sing_in": "Sing in",
         "no_account": "Don't have an account?",
-        "create":"Create"
+        "create":"Create" ,
+        "err_409" : "Password not match" , 
+        "err_500" : "Server Error" ,
+        "err_404" : "User not exist"
     },
     "registration":{
         "registration": "Registration",
@@ -23,7 +26,9 @@
         "confirm": "Confirm password",
         "create": "Create",
         "have_account": "Already have an account?",
-        "sing_in":"Sing in"
+        "sing_in":"Sing in" , 
+        "err_409" : "Email already exist" , 
+        "err_500" : "Server Error"
     }
 }
 }

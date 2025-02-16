@@ -36,9 +36,17 @@ export default function Page() {
 
     }
     catch(err){
-      console.log(err)
-      setError("err")
-      setIsLoanding(false)
+
+      if(typeof err === "object" && "message" in err! && "stack" in err!){
+
+        if(err.message == "409"){
+          setError(t("err_409"))
+        }
+        else { 
+          setError(t("err_500")) 
+        }
+        setIsLoanding(false)
+      }
     }
     
   };
