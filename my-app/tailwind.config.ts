@@ -12,7 +12,8 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         modal : "rgba(0 , 0 , 0 ,0.2)",
-        link : "rgba(100 , 100 , 200 , 1 )"
+        link : "rgba(100 , 100 , 200 , 1 )",
+        warn : "rgba(200 , 100 ,100 , 1)"
       },
     },
   },

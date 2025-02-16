@@ -1,9 +1,11 @@
 'use client'
 
 import Button from "@/app/_components/common/Button";
+import Loading from "@/app/_components/common/Loading";
 import TextInput from "@/app/_components/common/TextInput";
-import { ERoutes } from "@/enums";
+import { EApi, ERoutes } from "@/enums";
 import { Link } from "@/i18n/routing";
+import fetchApi from "@/utils/fetchApi";
 import { useTranslations } from "next-intl";
 import { useState } from "react"
 
@@ -14,10 +16,30 @@ export default function Page() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordAgain, setPasswordAgain] = useState('');
+
+  const [isLoanding , setIsLoanding] = useState(false);
+  const [error , setError] = useState('');
   
-  const sendForm = (e : React.MouseEvent<HTMLElement , MouseEvent>) => {
+  const sendForm = async (e : React.MouseEvent<HTMLElement , MouseEvent>) => {
     e.preventDefault()
     console.log(`Send form: ${email}, ${password}, ${passwordAgain}`);
+
+    try{
+
+      setIsLoanding(true);
+      setError("")
+
+      const response = await fetchApi( EApi.REGISTRATION , "POST" , {email , password});
+      console.log(response)
+
+      setIsLoanding(false);
+
+    }
+    catch(err){
+      console.log(err)
+      setError("err")
+      setIsLoanding(false)
+    }
     
   };
 
@@ -46,7 +68,7 @@ export default function Page() {
             handleChange={setPasswordAgain}/>
       
         <div className="w-28">
-          <Button text={t("create")} handleClick={sendForm}/>
+          {isLoanding ? <Loading/> : <Button text={t("create")} handleClick={sendForm}/>}
         </div>
 
         <div className="flex gap-1">
@@ -55,6 +77,8 @@ export default function Page() {
             <p className="hover:underline text-link">{t('sing_in')}</p>
           </Link>
         </div>
+
+        <p className="text-warn">{error}</p>
 
       </div>
     </div>
