@@ -13,7 +13,8 @@ export default {
         foreground: "var(--foreground)",
         modal : "rgba(0 , 0 , 0 ,0.2)",
         link : "rgba(100 , 100 , 200 , 1 )",
-        warn : "rgba(200 , 100 ,100 , 1)"
+        warn : "rgba(200 , 100 ,100 , 1)",
+        header: "rgba(35, 35, 35)"
       },
     },
   },
