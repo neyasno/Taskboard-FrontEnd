@@ -8,6 +8,6 @@ export default function Modal() {
     console.log("Modal vis:" + isVisible)
 
   return (
-    <div className={`w-screen h-screen bg-modal fixed ${!isVisible && "hidden"}`}>Modal</div>
+    <div className={`z-50 w-screen h-screen bg-modal fixed ${!isVisible && "hidden"}`}>Modal</div>
   )
 }
