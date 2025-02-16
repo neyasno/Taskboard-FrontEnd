@@ -73,7 +73,7 @@ export default function Page() {
 
         <div className="flex gap-1">
           <p>{t('have_account')}</p>
-          <Link href={ERoutes.REGISTRATION}>
+          <Link href={ERoutes.LOGIN}>
             <p className="hover:underline text-link">{t('sing_in')}</p>
           </Link>
         </div>
