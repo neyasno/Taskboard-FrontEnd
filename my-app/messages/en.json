@@ -7,30 +7,17 @@
         "footer" : "©2025"
     }
 },
-"verificationPage":{
+"verification":{
     "login":{
         "login": "Login",
-        "oauth":"Sing in with Google",
-        "or": "or",
         "email": "E-mail",
         "password": "Password",
-        "remember": "Remember me?",
         "sing_in": "Sing in",
-        "forgot": "Forgot password?",
-        "no_account": "Don't have an account?",
-        "create":"Create",
-        "recover":"Recover"
-    },
-    "recover":{
-        "recover": "Recover",
-        "email": "E-mail",
-        "send": "Send",
         "no_account": "Don't have an account?",
         "create":"Create"
     },
     "registration":{
         "registration": "Registration",
-        "or": "Login",
         "email": "E-mail",
         "password": "Password",
         "confirm": "Confirm password",
@@ -38,12 +25,5 @@
         "have_account": "Already have an account?",
         "sing_in":"Sing in"
     }
-},
-"profile":{
-        "edit": "Edit",
-        "followers": "Followers",
-        "views": "Views",
-        "arts": "Arts"
-    }
-
+}
 }

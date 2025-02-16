@@ -1,49 +1,29 @@
 {
-    "components":{
+"components":{
     "header":{
         "search" : "Поиск"
     },
     "footer":{
         "footer" : "©2025"
     }
-    },
-    "verificationPage":{
+},
+"verification":{
     "login":{
-        "login": "Логин",
-        "oauth":"Войти с пощью Google",
-        "or": "или",
+        "login": "Вход",
         "email": "Почта",
         "password": "Пароль",
-        "remember": "Запомнить меня?",
         "sing_in": "Войти",
-        "forgot": "Забыли пароль?",
-        "no_account": "Нет учетной записи?",
-        "create":"Создать",
-        "recover":"Восстановить"
-    },
-    "recover":{
-        "recover": "Восстановление",
-        "email": "Почта",
-        "send": "Отправить",
-        "no_account": "Нет учетной записи?",
+        "no_account": "Нет записи?",
         "create":"Создать"
     },
     "registration":{
         "registration": "Регистрация",
-        "or": "или",
         "email": "Почта",
         "password": "Пароль",
-        "confirm": "Подтвердите пароль",
+        "confirm": "Подтвердить пароль",
         "create": "Создать",
-        "have_account": "Уже есть учетная запись?",
+        "have_account": "Уже есть запись?",
         "sing_in":"Войти"
     }
-    },
-    "profile":{
-        "edit": "Редактировать",
-        "followers": "Подписчики",
-        "views": "Просмотры",
-        "arts": "Работы"
-    }
-
+}
 }
