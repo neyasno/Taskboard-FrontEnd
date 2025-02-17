@@ -7,8 +7,11 @@ import Button from '../../common/Button'
 import { useAppSelector } from '@/store/store'
 import { useRouter } from '@/i18n/routing'
 import { ERoutes } from '@/enums'
+import { useTranslations } from 'next-intl'
 
 export default function Header() {
+
+    const t = useTranslations('components.header');
 
   const [enableDropdown, setEnableDropdown] = useState(false);
   const isUserLogined = useAppSelector(state=>state.user.isLogined);
@@ -44,8 +47,9 @@ export default function Header() {
 
           <Image alt='profile-img' src={'/globe.svg'} width={48} height={48}/>
           <DropdownMenu enabled={enableDropdown}>
-            <div className='w-28 p-2'>
-              <Button text='Logout' handleClick={()=>{console.log("EXIT"); router.push(ERoutes.EXIT)}}/>
+            <div className='w-40 p-2'>
+              <Button text={t("settings")} handleClick={()=>{console.log("SETTINGS"); router.push(ERoutes.PROFILE)}}/>
+              <Button text={t("logout")} handleClick={()=>{console.log("EXIT"); router.push(ERoutes.EXIT)}}/>
             </div>
           </DropdownMenu>
             

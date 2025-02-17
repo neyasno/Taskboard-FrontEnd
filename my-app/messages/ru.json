@@ -1,7 +1,9 @@
 {
 "components":{
     "header":{
-        "search" : "Поиск"
+        "search" : "Поиск",
+        "settings": "Настройки",
+        "logout": "Выйти"
     },
     "footer":{
         "footer" : "©2025"
