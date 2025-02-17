@@ -29,7 +29,7 @@ export default function Page() {
       setError("")
 
       const response = await fetchApi( EApi.LOGIN , "POST" , {email , password});
-      console.log(response)
+      localStorage.setItem("token", response.token)
 
       setIsLoanding(false);
 

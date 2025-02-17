@@ -1,31 +1,32 @@
 import React from 'react'
 import TaskBoardHead from './TaskBoardHead'
 import CreateTaskBoardButton from './CreateTaskBoardButton'
+import { ETaskBoardStatus } from './StatusIndicator'
 
 const testBoards = [
   {
     title : "Decode Team" ,
-    status : "COMPLETED" ,
+    status : ETaskBoardStatus.COMPLETED ,
     isActive : true ,
   },
   {
     title : "sEFDAS Team" ,
-    status : "NOT_COMPLETED" ,
+    status : ETaskBoardStatus.WORKING ,
     isActive : false ,
   },
   {
     title : "aLABAMA Team" ,
-    status : "COMPLETED" ,
+    status : ETaskBoardStatus.WORKING ,
     isActive : false ,
   },
   {
     title : "PROJECT 1" ,
-    status : "COMPLETED" ,
+    status : ETaskBoardStatus.EXPIRED ,
     isActive : false ,
   },
   {
     title : "Sasha shop" ,
-    status : "NOT_COMPLETED" ,
+    status : ETaskBoardStatus.WAITING ,
     isActive : false ,
   },
 ]

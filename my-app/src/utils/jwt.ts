@@ -6,7 +6,7 @@ const jwtConfig = {
   secret: new TextEncoder().encode(JWT_SECRET),
 }
 
-export async function generateToken(payload : JWTPayload, expiresIn = '1 m') {
+export async function generateToken(payload : JWTPayload, expiresIn = '1 h') {
   const token = await new SignJWT(payload)
   .setProtectedHeader({ alg: 'HS256' })
   .setExpirationTime(expiresIn)

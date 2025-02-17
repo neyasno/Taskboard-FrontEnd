@@ -7,6 +7,7 @@ import Header from "../_components/layout/Header/Header";
 import Modal from "../_components/layout/Modal/Modal";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
+import VerificationWrapper from "../_components/layout/VerificationWrapper/VerificationWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,10 +38,12 @@ export default async function RootLayout({
         <ReduxProvider>
         <NextIntlClientProvider messages={messages}>
             <ThemesProvider>
-              <Modal/>
-              <header><Header/></header>
-              <main>{children}</main>
-              <footer></footer>
+              <VerificationWrapper>
+                <Modal/>
+                <header className=""><Header/></header>
+                <main className="h-screen">{children}</main>
+                <footer></footer>
+              </VerificationWrapper>
             </ThemesProvider>
           </NextIntlClientProvider>
         </ReduxProvider>
