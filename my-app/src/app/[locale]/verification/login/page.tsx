@@ -5,6 +5,8 @@ import Loading from "@/app/_components/common/Loading";
 import TextInput from "@/app/_components/common/TextInput";
 import { EApi, ERoutes } from "@/enums";
 import { Link, useRouter } from "@/i18n/routing";
+import { setIsLogined } from "@/store/slices/userSlice";
+import { useAppDispatch } from "@/store/store";
 import fetchApi from "@/utils/fetchApi";
 import { useTranslations } from "next-intl";
 import { useState } from "react"
@@ -20,7 +22,7 @@ export default function Page() {
   const [error , setError] = useState('');
 
   const router = useRouter();
-  
+  const dispatcher = useAppDispatch();
 
   const sendForm = async (e : React.MouseEvent<HTMLElement , MouseEvent>) => {
     e.preventDefault();
@@ -51,8 +53,9 @@ export default function Page() {
         }
         setIsLoanding(false)
       }
+    }finally{
+      dispatcher(setIsLogined);
     }
-
   };
 
   return (
