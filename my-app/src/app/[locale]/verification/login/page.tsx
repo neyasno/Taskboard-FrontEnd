@@ -4,7 +4,7 @@ import Button from "@/app/_components/common/Button";
 import Loading from "@/app/_components/common/Loading";
 import TextInput from "@/app/_components/common/TextInput";
 import { EApi, ERoutes } from "@/enums";
-import { Link } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import fetchApi from "@/utils/fetchApi";
 import { useTranslations } from "next-intl";
 import { useState } from "react"
@@ -19,6 +19,9 @@ export default function Page() {
   const [isLoanding , setIsLoanding] = useState(false);
   const [error , setError] = useState('');
 
+  const router = useRouter();
+  
+
   const sendForm = async (e : React.MouseEvent<HTMLElement , MouseEvent>) => {
     e.preventDefault();
     console.log(`Send form: ${email}, ${password}`);
@@ -32,6 +35,8 @@ export default function Page() {
       localStorage.setItem("token", response.token)
 
       setIsLoanding(false);
+
+      router.push(ERoutes.DEFAULT)
 
     }
     catch(err){
