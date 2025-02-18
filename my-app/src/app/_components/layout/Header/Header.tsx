@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DropdownMenu from '../../common/DropdownMenu'
 import Button from '../../common/Button'
 import { useAppSelector } from '@/store/store'
@@ -14,9 +14,13 @@ export default function Header() {
     const t = useTranslations('components.header');
 
   const [enableDropdown, setEnableDropdown] = useState(false);
-  const isUserLogined = useAppSelector(state=>state.user.isLogined);
+  const user = useAppSelector(state=>state.user);
 
   const router = useRouter();
+
+  useEffect(()=>{} , [user.isLogined])
+
+  
 
   return (
     <div className='bg-header
@@ -31,15 +35,9 @@ export default function Header() {
         
         <div className='text-2xl my-auto'>TaskBoard</div>
 
-        {/* <div className='flex flex-nowrap h-4/5 my-auto'>
-          <Button text='Home' handleClick={()=>{}}/>
-          <Button text='Boards' handleClick={()=>{}}/>
-          <Button text='Other' handleClick={()=>{}}/>
-        </div> */}
-
       </div>
 
-      { isUserLogined && (
+      { user.isLogined && (
         <div className='relative inline-block'
           onMouseEnter={() => setEnableDropdown(true)}
           onMouseLeave={() => setEnableDropdown(false)}
@@ -49,7 +47,7 @@ export default function Header() {
           <DropdownMenu enabled={enableDropdown}>
             <div className='w-40 p-2'>
               <Button text={t("settings")} handleClick={()=>{console.log("SETTINGS"); router.push(ERoutes.PROFILE)}}/>
-              <Button text={t("logout")} handleClick={()=>{console.log("EXIT"); router.push(ERoutes.EXIT)}}/>
+              <Button text={t("logout")} handleClick={()=>{console.log("EXIT"); localStorage.clear(); router.push(ERoutes.LOGIN)}}/>
             </div>
           </DropdownMenu>
             

@@ -4,7 +4,7 @@ import Button from "@/app/_components/common/Button";
 import Loading from "@/app/_components/common/Loading";
 import TextInput from "@/app/_components/common/TextInput";
 import { EApi, ERoutes } from "@/enums";
-import { Link } from "@/i18n/routing";
+import { Link, useRouter } from "@/i18n/routing";
 import fetchApi from "@/utils/fetchApi";
 import { useTranslations } from "next-intl";
 import { useState } from "react"
@@ -12,6 +12,8 @@ import { useState } from "react"
 export default function Page() {
 
   const t = useTranslations('verification.registration');
+
+  const router = useRouter()
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -33,6 +35,8 @@ export default function Page() {
       console.log(response)
 
       setIsLoanding(false);
+
+      router.push(ERoutes.LOGIN)
 
     }
     catch(err){

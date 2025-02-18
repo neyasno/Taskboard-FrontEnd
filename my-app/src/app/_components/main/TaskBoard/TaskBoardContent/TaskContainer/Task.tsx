@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+import React, { ReactNode, useState } from 'react'
+import TaskElement from './TaskElement';
 
 export type TaskProps ={
     title : string , 
@@ -7,14 +9,32 @@ export type TaskProps ={
 }
 
 export default function Task({title , isCompleted , id} : TaskProps) {
+
+    const taskNode = <TaskElement id='' title='task' isCompleted={false}/>;
+    const skeletonNode = <div className='flex p-3 items-center gap-2 bg-gray-700 rounded-lg'></div>
+
+    const [isDragged , setIsDragged] = useState(false);
+    const [node , setNode] = useState<ReactNode>(taskNode);
+
+    const handleDragStart = ( e : React.DragEvent<HTMLLIElement>) => {
+        e.preventDefault()
+        console.log("DRAG_START")
+        setNode(skeletonNode)
+    }
+
+    const handleDragEnd = (e :  React.DragEvent<HTMLLIElement>) =>{
+        e.preventDefault()
+        console.log("DRAG_END")
+    }
+
   return (
-    <li className='flex p-3'>
-        <p>{title}</p>
-        {isCompleted ? 
-            <div className='size-2 bg-blue-500 border-black rounded-full'></div>
-            : 
-            <div className='size-2 bg-transparent border-2 border-black rounded-full '></div>              
-        }
+    <li className='cursor-grab'       
+        draggable
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}>
+                            
+        {node}
+        
     </li>
 )
 }

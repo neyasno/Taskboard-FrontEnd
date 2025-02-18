@@ -36,7 +36,7 @@ export default function Page() {
       const response = await fetchApi( EApi.LOGIN , "POST" , {email , password});
       localStorage.setItem("token", response.token)
 
-      setIsLoanding(false);
+      dispatcher(setIsLogined(true));
 
       router.push(ERoutes.DEFAULT)
 
@@ -51,10 +51,10 @@ export default function Page() {
         else { 
           setError(t("err_500")) 
         }
-        setIsLoanding(false)
+        
       }
     }finally{
-      dispatcher(setIsLogined);
+      setIsLoanding(false)
     }
   };
 
