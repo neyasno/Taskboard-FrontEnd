@@ -44,7 +44,7 @@ export default function Header() {
         >
 
           <Image alt='profile-img' src={'/globe.svg'} width={48} height={48}/>
-          <DropdownMenu enabled={enableDropdown}>
+          <DropdownMenu enabled={enableDropdown} className='right-0'>
             <div className='w-40 p-2'>
               <Button text={t("settings")} handleClick={()=>{console.log("SETTINGS"); router.push(ERoutes.PROFILE)}}/>
               <Button text={t("logout")} handleClick={()=>{console.log("EXIT"); localStorage.clear(); router.push(ERoutes.LOGIN)}}/>
