@@ -12,7 +12,7 @@ export default function DropdownMenu({children, enabled, className}: DropdownPro
         <>
             {enabled && (
                 <div className={`absolute ${className}`}>
-                    <div className="mt-2 bg-slate-700 border rounded-md shadow-lg">
+                    <div className="mt-2 bg-slate-700 border rounded-md">
                         {children}
                     </div>
                 </div> 
