@@ -1,43 +1,81 @@
-import React from 'react'
-import TaskBoardHead from './TaskBoardHead'
+'use client'
+
+import React, { useEffect, useState } from 'react'
+import TaskBoardHead, { TaskBoardHeadProps, TTaskBoardHead } from './TaskBoardHead'
 import CreateTaskBoardButton from './CreateTaskBoardButton'
 import { ETaskBoardStatus } from './StatusIndicator'
+import fetchApi from '@/utils/fetchApi'
+import { EApi } from '@/enums'
+import Loading from '../../common/Loading'
+import { useAppDispatch } from '@/store/store'
+import { setCurrentTaskBoard, setTaskBoard } from '@/store/slices/taskBoardsSlice'
+import { Result } from 'postcss'
 
 const testBoards = [
   {
     title : "Decode Team" ,
     status : ETaskBoardStatus.COMPLETED ,
-    isActive : true ,
+    id: "0" , 
   },
   {
     title : "sEFDAS Team" ,
     status : ETaskBoardStatus.WORKING ,
-    isActive : false ,
+    id: "3" , 
   },
   {
     title : "aLABAMA Team" ,
     status : ETaskBoardStatus.WORKING ,
-    isActive : false ,
+    id: "2" , 
   },
   {
     title : "PROJECT 1" ,
     status : ETaskBoardStatus.EXPIRED ,
-    isActive : false ,
+    id: "4" , 
   },
   {
     title : "Sasha shop" ,
     status : ETaskBoardStatus.WAITING ,
-    isActive : false ,
+    id: "5" , 
   },
 ]
 
 export default function TaskBoardList() {
+
+  const [taskBoards , setTaskBoards] = useState<TaskBoardHeadProps[]>(testBoards) 
+  const [isLoading , setIsLoading] = useState(true)
+  
+  const dispatch = useAppDispatch();
+
+  useEffect(()=>{
+
+    const getTaskBoards = async () => {
+      const result = await fetchApi(EApi.TASKBOARDS , "GET" );
+      console.log(result)
+
+      dispatch(setCurrentTaskBoard(result[0].id))
+    }
+    
+
+    
+    setIsLoading(false)
+  } ,[])
+
   return (
     <nav>
-      <ul className='flex gap-1'>
-        {testBoards.map((item , index) => <TaskBoardHead isActive={item.isActive} title={item.title} status={item.status} key={index} />)}
-        <CreateTaskBoardButton/>
-      </ul>
-    </nav>
+      {isLoading? 
+        <Loading/> 
+        : 
+        <ul className='flex gap-1'>
+          {taskBoards.map((item , index) => <TaskBoardHead     
+                                                           id={item.id}  
+                                                           title={item.title} 
+                                                           status={item.status} 
+                                                           key={index}
+
+                                                            />)}
+          <CreateTaskBoardButton/>
+        </ul>  
+      }
+    </nav>   
   )
 }

@@ -4,7 +4,7 @@ import TaskBoardContent from './TaskBoardContent/TaskBoardContent'
 
 export default function TaskBoard() {
   return (
-    <div className='flex flex-col bg-gray-500 px-4'>
+    <div className='flex flex-col bg-black_l px-4 py-2'>
       <TaskBoardHeader/>
       <TaskBoardContent/>
     </div>

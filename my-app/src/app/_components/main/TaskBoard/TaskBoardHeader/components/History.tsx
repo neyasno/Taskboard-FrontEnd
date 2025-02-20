@@ -4,6 +4,7 @@ import Button from '@/app/_components/common/Button'
 import DropdownMenu from '@/app/_components/common/DropdownMenu';
 import React, { useState } from 'react'
 import HistoryItem from './HistoryItem';
+import Image from 'next/image';
 
 export default function History() {
 
@@ -46,7 +47,9 @@ export default function History() {
 
   return (
     <div>
-      <Button text='History' handleClick={()=>setVisible(!isVisible)}/>
+       <button className='flex rounded-full p-1 hover:bg-black' onClick={()=>setVisible(!isVisible)}>
+            <Image alt='history' src={"/history.svg"} width={30} height={30}/>
+        </button>
       <DropdownMenu enabled={isVisible}>
         {testData.map((data, i) => 
           <HistoryItem key={i} {...data}/>

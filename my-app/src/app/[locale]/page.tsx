@@ -3,7 +3,7 @@ import TaskBoardList from "../_components/main/TaskBoardList/TaskBoardList";
 
 export default function Home() {
     return(
-        <div className="flex flex-col px-2">
+        <div className="flex flex-col px-2 pt-1">
             <TaskBoardList/>
             <TaskBoard/>
         </div>

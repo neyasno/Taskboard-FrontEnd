@@ -49,11 +49,11 @@ export default function TaskContainer({title} : TaskContainerProps) {
   };
 
   return (
-    <li className='flex flex-col bg-gray-400 gap-3 px-3 w-full rounded-lg ' onDrop={handleDrop} onDragOver={handleDragOver}>
+    <li className='flex flex-col bg-black gap-3 px-3 w-full rounded-lg ' onDrop={handleDrop} onDragOver={handleDragOver}>
         <div className='pl-2'>
             <TaskContainerHeader title={title}/>
         </div>
-        <ul className='flex flex-col gap-2 bg-gray-500 rounded-lg mb-3'>
+        <ul className='flex flex-col gap-2 bg-black_l rounded-lg mb-3'>
             {tasks.map( (t,index) => <Task id={t.id} isCompleted={t.isCompleted} title={t.title} key={index}/>)}
         </ul>
     </li>

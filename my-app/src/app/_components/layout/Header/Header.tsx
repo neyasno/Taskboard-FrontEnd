@@ -23,30 +23,31 @@ export default function Header() {
   
 
   return (
-    <div className='bg-header
+    <div className='bg-black
                     w-full
                     flex flex-nowrap
                     justify-between
-                    px-2 py-1
+                    px-6 py-1
                     '>
       
       <div className='flex flex-nowrap 
                       gap-x-2'>
         
-        <div className='text-2xl my-auto'>TaskBoard</div>
+        <div className='text-xl my-auto'>TaskBoard</div>
 
       </div>
 
       { user.isLogined && (
-        <div className='relative inline-block'
+        <div className='relative inline-block p-1 m-1 rounded-full hover:bg-black_l'
           onMouseEnter={() => setEnableDropdown(true)}
           onMouseLeave={() => setEnableDropdown(false)}
         >
 
-          <Image alt='profile-img' src={'/globe.svg'} width={48} height={48}/>
+          <Image alt='profile' src={'/profile.svg'} width={30} height={30}/>
           <DropdownMenu enabled={enableDropdown} className='right-0'>
-            <div className='w-40 p-2'>
+            <div className='w-40 p-2 flex-col gap-4'>
               <Button text={t("settings")} handleClick={()=>{console.log("SETTINGS"); router.push(ERoutes.PROFILE)}}/>
+              <div className='h-1'></div>
               <Button text={t("logout")} handleClick={()=>{console.log("EXIT"); localStorage.clear(); router.push(ERoutes.LOGIN)}}/>
             </div>
           </DropdownMenu>

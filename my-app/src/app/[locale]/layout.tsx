@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "@/store/ReduxProvider";
 import ThemesProvider from "@/utils/ThemesProvider";
@@ -8,11 +8,6 @@ import Modal from "../_components/layout/Modal/Modal";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import VerificationWrapper from "../_components/layout/VerificationWrapper/VerificationWrapper";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -34,7 +29,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistMono.className} antialiased`}>
         <ReduxProvider>
         <NextIntlClientProvider messages={messages}>
             <ThemesProvider>

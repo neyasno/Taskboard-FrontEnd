@@ -6,7 +6,7 @@ import DeleteButton from './components/DeleteButton'
 
 export default function TaskBoardHeader() {
   return (
-    <nav className='flex w-full bg-transparent justify-end gap-2'>
+    <nav className='flex w-full bg-transparent items-center justify-end gap-2 pb-2'>
         <Search/>
         <Users/>
         <History/>

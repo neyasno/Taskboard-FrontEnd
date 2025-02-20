@@ -9,12 +9,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
         modal : "rgba(0 , 0 , 0 ,0.2)",
+
         link : "rgba(100 , 100 , 200 , 1 )",
         warn : "rgba(200 , 100 ,100 , 1)",
-        header: "rgba(35, 35, 35)"
+
+        black: "rgba(35, 35, 35)",
+        black_l: "rgba(60, 60, 60)",
+        black_ll: "rgba(80, 80, 80)",
+        black_d: "rgba(25, 25, 25)",
+
       },
     },
   },

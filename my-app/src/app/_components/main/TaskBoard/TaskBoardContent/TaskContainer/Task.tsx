@@ -11,7 +11,7 @@ export type TaskProps ={
 export default function Task({title , isCompleted , id} : TaskProps) {
 
     const taskNode = <TaskElement id='' title='task' isCompleted={false}/>;
-    const skeletonNode = <div className='flex p-3 items-center gap-2 bg-gray-700 rounded-lg'></div>
+    const skeletonNode = <div className='flex p-3 items-center gap-2 bg-black_d rounded-lg'></div>
 
     const [node , setNode] = useState<ReactNode>(taskNode);
 
