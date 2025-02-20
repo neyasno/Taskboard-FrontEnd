@@ -50,7 +50,7 @@ export default function History() {
        <button className='flex rounded-full p-1 hover:bg-black' onClick={()=>setVisible(!isVisible)}>
             <Image alt='history' src={"/history.svg"} width={30} height={30}/>
         </button>
-      <DropdownMenu enabled={isVisible}>
+      <DropdownMenu enabled={isVisible} className='right-2'>
         {testData.map((data, i) => 
           <HistoryItem key={i} {...data}/>
         )}
