@@ -1,26 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type ModalSlice = {
-    isVisible : boolean 
+export enum ModalType {
+    None,
+    NewTaskboard,
+    NewTask
+};
 
+type ModalSlice = {
+    type : ModalType
 }
 
 const initialState : ModalSlice  = {
-    isVisible : false
+    type : ModalType.None
 }
 
 const modalSlice = createSlice({
     name: "modal" , 
     initialState : initialState ,
     reducers : {
-        hideModal : (state)=>{
-            state.isVisible = false;
-        },
-        showModal : (state)=>{
-            state.isVisible = true;
+        setModalType: (state, action)=>{
+            state.type = action.payload
         }
     }
 })
 
-export const { hideModal , showModal} = modalSlice.actions;
+export const {setModalType: setModalType} = modalSlice.actions;
 export default modalSlice.reducer;

@@ -1,13 +1,33 @@
 'use client'
 
+import { ModalType } from '@/store/slices/modalSlice';
 import { useAppSelector } from '@/store/store'
 import React from 'react'
+import BaseModalLayout from './BaseModalLayout';
+import NewTaskboardForm from './NewTaskboardForm';
+import NewTaskForm from './NewTaskForm';
 
 export default function Modal() {
-    const isVisible = useAppSelector(state => state.modal.isVisible)
-    console.log("Modal vis:" + isVisible)
+    const state = useAppSelector(state => state.modal)
+    
+    console.log(state.type);
+    
 
-  return (
-    <div className={`z-50 w-screen h-screen bg-modal fixed ${!isVisible && "hidden"}`}>Modal</div>
-  )
+    switch (state.type) {
+      case ModalType.None:
+        return <></>;
+      
+      case ModalType.NewTaskboard:
+        return <BaseModalLayout>
+                <NewTaskboardForm />
+              </BaseModalLayout>;
+
+      case ModalType.NewTask:
+        return <BaseModalLayout>
+                <NewTaskForm />
+              </BaseModalLayout>;
+
+      default:
+        throw new Error("NO SUCH MODAL TYPE EXISTS. HOW YOU DID IT?");
+    }
 }

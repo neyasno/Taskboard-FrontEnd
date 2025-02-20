@@ -1,10 +1,17 @@
 'use client'
+import { ModalType, setModalType } from '@/store/slices/modalSlice';
+import { useAppDispatch } from '@/store/store';
 import React from 'react'
 
 export default function CreateTaskBoardButton() {
 
+  const dispatcher = useAppDispatch();
+
   const openCreateTableModal = ( e : React.MouseEvent<HTMLElement , MouseEvent>) =>{
-    e.preventDefault()
+    e.preventDefault();
+
+    dispatcher(setModalType(ModalType.NewTaskboard));
+    
   }
 
   return (
