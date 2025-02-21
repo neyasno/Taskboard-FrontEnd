@@ -49,13 +49,17 @@ export default function TaskBoardList() {
   useEffect(()=>{
 
     const getTaskBoards = async () => {
-      const result = await fetchApi(EApi.TASKBOARDS , "GET" );
+      const result : [] = await fetchApi(EApi.TASKBOARDS , "GET" );
       console.log(result)
+      if(result.length > 0 ){
+        dispatch(setCurrentTaskBoard(result[0].id))
+      }
 
-      dispatch(setCurrentTaskBoard(result[0].id))
+      setTaskBoards(result)
+      
     }
     
-
+    getTaskBoards();
     
     setIsLoading(false)
   } ,[])

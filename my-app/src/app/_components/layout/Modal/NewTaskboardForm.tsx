@@ -44,6 +44,7 @@ export default function NewTaskboardForm({}) {
     };
 
     return <>
+<<<<<<< HEAD
         <div>
             <TextInput placeholder="Title" value={title} handleChange={setTitle}/>
 
@@ -53,6 +54,10 @@ export default function NewTaskboardForm({}) {
             </div>
 
             <Button text="Create" handleClick={createHandler}/>
+=======
+        <div >
+            TEST
+>>>>>>> f783bb3dc9d387ef71b14c52f24bd5311edde7a2
         </div>
     </>;
 }
