@@ -4,7 +4,7 @@ export interface IUser extends Document {
   email: string;
   password : string;
   avatarUrl : string;
-  boardsIds : string[];
+  taskBoards : string[];
 }
 
 const UserSchema: Schema = new Schema(
@@ -12,7 +12,7 @@ const UserSchema: Schema = new Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     avatarUrl : {type : String , required : false},
-    boardsIds : [{ type: mongoose.Schema.Types.ObjectId, ref: "TaskBoard" }]
+    taskBoards : [{ type: mongoose.Schema.Types.ObjectId, ref: "TaskBoard" }]
   }
 );
 

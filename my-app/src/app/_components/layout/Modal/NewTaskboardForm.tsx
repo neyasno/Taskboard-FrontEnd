@@ -1,6 +1,6 @@
 export default function NewTaskboardForm({}) {
     return <>
-        <div>
+        <div >
             TEST
         </div>
     </>;
