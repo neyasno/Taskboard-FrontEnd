@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        modal : "rgba(0 , 0 , 0 ,0.2)",
+        modal : "rgba(0 , 0 , 0 ,0.6)",
 
         link : "rgba(100 , 100 , 200 , 1 )",
         warn : "rgba(200 , 100 ,100 , 1)",

@@ -15,8 +15,8 @@ export default function CreateTaskBoardButton() {
   }
 
   return (
-    <li className='px-4 py-2 bg-black hover:bg-black_l rounded-t-lg'> 
-        <button onClick={openCreateTableModal}>+</button>
+    <li className='bg-black hover:bg-black_l rounded-t-lg'> 
+        <button className='px-4 py-2 ' onClick={openCreateTableModal}>+</button>
     </li>
   )
 }

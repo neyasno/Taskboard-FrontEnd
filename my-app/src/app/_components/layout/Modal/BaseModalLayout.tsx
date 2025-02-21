@@ -8,14 +8,9 @@ export default function BaseModalLayout({children}: {children: ReactNode}) {
     const closeModal = ()=>{dispatcher(setModalType(ModalType.None))};
 
     return (
-        <div className={`z-50 w-screen h-screen bg-modal fixed`} onClick={closeModal}>
-            <div className="min-w-5">
-                <div className='bg-slate-500'>
-                    <button onClick={closeModal}>X</button>
-                </div>
-                <div>
-                    {children}
-                </div>
+        <div className={`z-50 w-screen h-screen bg-modal flex items-center justify-center fixed`} onClick={closeModal}>
+            <div className="bg-black w-1/2 p-5" onClick={e=> e.stopPropagation()}>
+                {children}
             </div>
             
       </div>    
