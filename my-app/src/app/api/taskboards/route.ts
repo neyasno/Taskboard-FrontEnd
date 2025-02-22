@@ -1,7 +1,7 @@
 
 import dbConnect from "@/_server/dbConnect";
 import { ETaskBoardStatus, TaskBoard } from "@/_server/models/Taskboard";
-import { User } from "@/_server/models/User";
+import { IUser, User } from "@/_server/models/User";
 import { ITaskBoard } from "@/_server/models/Taskboard";
 
 import { isAuthenticated } from "@/utils/jwt";
@@ -19,23 +19,41 @@ export async function POST(req: Request) {
 
     const body = await req.json();
 
-    
-
     const user = await User.findOne({email : userEmail})
-    console.log(user)
+
+    const invitedUsers : IUser[] = [];
+
+    for( const userEmail of body.users){
+      const invitedUser : IUser | null = await User.findOne({email : userEmail});
+        if(invitedUser){
+          invitedUsers.push(invitedUser);
+        }
+    }
+
+    const inviteIds : string[] = [] 
+    invitedUsers.forEach( invited => inviteIds.push(invited._id))
+    inviteIds.push(user.id)
+    console.log(inviteIds)
 
     const newTaskBoard = {
       title : body.title , 
       status : ETaskBoardStatus.COMPLETED , 
       admins:[user.id] , 
-      users:[...body.users , user.id]
+      users: inviteIds
     }
+
+    console.log(newTaskBoard)
 
     const createdTaskBoard = await TaskBoard.create(newTaskBoard)
     console.log(createdTaskBoard)
 
     user.taskBoards = [...user.taskBoards , createdTaskBoard._id ]
     user.save()
+
+    for( const invited of invitedUsers){
+      invited.taskBoards = [...invited.taskBoards , createdTaskBoard.id]
+      invited.save()
+    }
     
     return NextResponse.json(createdTaskBoard, { status: 200 });
     
