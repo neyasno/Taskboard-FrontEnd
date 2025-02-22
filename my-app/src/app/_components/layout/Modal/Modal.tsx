@@ -10,9 +10,6 @@ import NewTaskForm from './NewTaskForm';
 export default function Modal() {
     const state = useAppSelector(state => state.modal)
     
-    console.log(state.type);
-    
-
     switch (state.type) {
       case ModalType.None:
         return <></>;
