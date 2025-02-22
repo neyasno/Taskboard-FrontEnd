@@ -1,7 +1,10 @@
 
 import dbConnect from "@/_server/dbConnect";
+import { ETaskBoardStatus, TaskBoard } from "@/_server/models/Taskboard";
 import { User } from "@/_server/models/User";
-import { generateToken, isAuthenticated } from "@/utils/jwt";
+import { ITaskBoard } from "@/_server/models/Taskboard";
+
+import { isAuthenticated } from "@/utils/jwt";
 
 import { NextResponse } from "next/server";
 
@@ -16,11 +19,25 @@ export async function POST(req: Request) {
 
     const body = await req.json();
 
+    
+
     const user = await User.findOne({email : userEmail})
     console.log(user)
-    const taskBoards = await user.taskBoards;
+
+    const newTaskBoard = {
+      title : body.title , 
+      status : ETaskBoardStatus.COMPLETED , 
+      admins:[user.id] , 
+      users:[...body.users , user.id]
+    }
+
+    const createdTaskBoard = await TaskBoard.create(newTaskBoard)
+    console.log(createdTaskBoard)
+
+    user.taskBoards = [...user.taskBoards , createdTaskBoard._id ]
+    user.save()
     
-    return NextResponse.json(taskBoards, { status: 200 });
+    return NextResponse.json(createdTaskBoard, { status: 200 });
     
   } catch (error) {
     return NextResponse.json({ error: `Create taskboard Error: ${error}` }, { status: 500 });
@@ -38,9 +55,17 @@ export async function GET(req: Request) {
 
       const user = await User.findOne({email : userEmail})
       console.log(user)
-      const taskBoards = await user.taskBoards;
-      console.log(taskBoards)
+      const taskBoardsIds: string[] = await user.taskBoards;
+
+      const taskBoards : ITaskBoard[] = [] 
       
+      for (const id of taskBoardsIds) {
+        const taskBoard = await TaskBoard.findById(id);
+        if (taskBoard) {
+          taskBoards.push(taskBoard);
+        }
+      }
+
       return NextResponse.json(taskBoards, { status: 200 });
       
     } catch (error) {

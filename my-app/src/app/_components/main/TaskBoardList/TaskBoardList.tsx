@@ -1,15 +1,14 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import TaskBoardHead, { TaskBoardHeadProps, TTaskBoardHead } from './TaskBoardHead'
+import TaskBoardHead, { TaskBoardHeadProps } from './TaskBoardHead'
 import CreateTaskBoardButton from './CreateTaskBoardButton'
-import { ETaskBoardStatus } from './StatusIndicator'
 import fetchApi from '@/utils/fetchApi'
 import { EApi } from '@/enums'
 import Loading from '../../common/Loading'
 import { useAppDispatch } from '@/store/store'
-import { setCurrentTaskBoard, setTaskBoard } from '@/store/slices/taskBoardsSlice'
-import { Result } from 'postcss'
+import { setCurrentTaskBoard } from '@/store/slices/taskBoardsSlice'
+import { ETaskBoardStatus } from './StatusIndicator'
 
 const testBoards = [
   {
@@ -19,12 +18,12 @@ const testBoards = [
   },
   {
     title : "sEFDAS Team" ,
-    status : ETaskBoardStatus.WORKING ,
+    status : ETaskBoardStatus.COMPLETED ,
     id: "3" , 
   },
   {
     title : "aLABAMA Team" ,
-    status : ETaskBoardStatus.WORKING ,
+    status : ETaskBoardStatus.IN_WORK,
     id: "2" , 
   },
   {
@@ -34,7 +33,7 @@ const testBoards = [
   },
   {
     title : "Sasha shop" ,
-    status : ETaskBoardStatus.WAITING ,
+    status : ETaskBoardStatus.COMPLETED ,
     id: "5" , 
   },
 ]

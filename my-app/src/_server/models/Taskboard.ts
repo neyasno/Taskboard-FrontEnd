@@ -1,21 +1,23 @@
 import mongoose, { Schema, Document } from "mongoose";
 
-enum ETaskBoardStatus{
-    EXPIRED ,
-    IN_WORK ,
-    COMPLETED , 
+export enum ETaskBoardStatus{
+    EXPIRED = "EXPIRED" ,
+    IN_WORK = "IN_WORK" ,
+    COMPLETED = "COMPLETED" , 
 }
 
 export interface ITaskBoard extends Document {
+  _id : string;
   title: string ;
   status : ETaskBoardStatus , 
   users : string[] ,
   admins : string[] , 
-  taskContainers : string[] ;
+  taskContainers? : string[] ;
 }
 
 const TaskBoardSchema: Schema = new Schema(
   {
+
     title : {type : String , required : true } ,
     status : {type : String } ,
     users : [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
