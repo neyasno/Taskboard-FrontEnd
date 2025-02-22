@@ -7,19 +7,19 @@ import { setCurrentTaskBoard } from '@/store/slices/taskBoardsSlice'
 
 export type TaskBoardHeadProps = {
 
-    id : string ,
+    _id : string ,
     title : string ,
     status : ETaskBoardStatus ,
 
 }
 
-export default function TaskBoardHead({ id , status ,title} : TaskBoardHeadProps) {
+export default function TaskBoardHead({ _id , status ,title} : TaskBoardHeadProps) {
 
   const dispatch = useAppDispatch()
   const currentTaskBoardId = useAppSelector(state => state.taskBoards.currentTaskBoardId)
 
 
-  const isActive = (id === currentTaskBoardId)
+  const isActive = (_id === currentTaskBoardId)
 
   const changeTaskBoard = (e : React.MouseEvent<HTMLElement , MouseEvent>) =>{
     e.preventDefault()

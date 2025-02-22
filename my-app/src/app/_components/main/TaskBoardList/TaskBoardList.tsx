@@ -14,27 +14,27 @@ const testBoards = [
   {
     title : "Decode Team" ,
     status : ETaskBoardStatus.COMPLETED ,
-    id: "0" , 
+    _id: "0" , 
   },
   {
     title : "sEFDAS Team" ,
     status : ETaskBoardStatus.COMPLETED ,
-    id: "3" , 
+    _id: "3" , 
   },
   {
     title : "aLABAMA Team" ,
     status : ETaskBoardStatus.IN_WORK,
-    id: "2" , 
+    _id: "2" , 
   },
   {
     title : "PROJECT 1" ,
     status : ETaskBoardStatus.EXPIRED ,
-    id: "4" , 
+    _id: "4" , 
   },
   {
     title : "Sasha shop" ,
     status : ETaskBoardStatus.COMPLETED ,
-    id: "5" , 
+    _id: "5" , 
   },
 ]
 
@@ -51,7 +51,8 @@ export default function TaskBoardList() {
       const result : [] = await fetchApi(EApi.TASKBOARDS , "GET" );
       console.log(result)
       if(result.length > 0 ){
-        dispatch(setCurrentTaskBoard(result[0].id))
+        console.log(result[0])
+        dispatch(setCurrentTaskBoard(result[0]._id))
       }
 
       setTaskBoards(result)
@@ -70,7 +71,7 @@ export default function TaskBoardList() {
         : 
         <ul className='flex gap-1'>
           {taskBoards.map((item , index) => <TaskBoardHead     
-                                                           id={item.id}  
+                                                           _id={item._id}  
                                                            title={item.title} 
                                                            status={item.status} 
                                                            key={index}

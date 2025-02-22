@@ -33,7 +33,6 @@ export async function POST(req: Request) {
     const inviteIds : string[] = [] 
     invitedUsers.forEach( invited => inviteIds.push(invited._id))
     inviteIds.push(user.id)
-    console.log(inviteIds)
 
     const newTaskBoard = {
       title : body.title , 
@@ -42,10 +41,7 @@ export async function POST(req: Request) {
       users: inviteIds
     }
 
-    console.log(newTaskBoard)
-
     const createdTaskBoard = await TaskBoard.create(newTaskBoard)
-    console.log(createdTaskBoard)
 
     user.taskBoards = [...user.taskBoards , createdTaskBoard._id ]
     user.save()
@@ -72,7 +68,6 @@ export async function GET(req: Request) {
       }
 
       const user = await User.findOne({email : userEmail})
-      console.log(user)
       const taskBoardsIds: string[] = await user.taskBoards;
 
       const taskBoards : ITaskBoard[] = [] 
