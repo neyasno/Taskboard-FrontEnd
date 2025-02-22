@@ -7,6 +7,16 @@
     },
     "footer":{
         "footer" : "©2025"
+    },
+    "main":{
+        "taskboard":{
+            "forms":{
+                "title": "Title",
+                "add_user": "Add User",
+                "email": "E-mail",
+                "create_taskboard": "Create"
+            }
+        }
     }
 },
 "verification":{

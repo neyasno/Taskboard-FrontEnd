@@ -7,6 +7,16 @@
     },
     "footer":{
         "footer" : "©2025"
+    },
+    "main":{
+        "taskboard":{
+            "forms":{
+                "title": "Название",
+                "add_user": "Добавить пользователя",
+                "email": "Почта",
+                "create_taskboard": "Создать"
+            }
+        }
     }
 },
 "verification":{
