@@ -34,7 +34,7 @@ export default function NewTaskboardForm({}) {
 
     const removeUser = (id: number) => {
         setUsers(prev =>
-            [...prev].filter(x=>x.id!=id)
+            [...prev].filter(x => x.id !== id)
         );
     };
 
@@ -42,7 +42,7 @@ export default function NewTaskboardForm({}) {
         try{
             await fetchApi(EApi.TASKBOARDS, "POST", {
                 title: title,
-                users: users
+                users: users.map(x => x.email)
             });
 
         } catch(e){
@@ -62,7 +62,7 @@ export default function NewTaskboardForm({}) {
                         <TextInput key={user.id} value={user.email} placeholder={t("email")} handleChange={(text)=>changeUser(user.id, text)}/>
                     </span>
 
-                    <button className="w-10 h-10 border-2 border-solid rounded-full" onClick={()=>removeUser(user.id)}>-</button>
+                    <button className="w-10 h-10 border-2 border-solid rounded-full aspect-square" onClick={()=>removeUser(user.id)}>-</button>
                 </div>)}
 
                 <div className="flex items-center">
@@ -70,7 +70,7 @@ export default function NewTaskboardForm({}) {
                     <span className="w-full shadow-inner [box-shadow:inset_0_-25px_15px_rgba(0,0,0,0.4);]">
                         <TextInput value="" placeholder={t("add_user")} handleChange={()=>{}} readonly/>
                     </span>
-                    <button className="w-10 h-10 border-2 border-solid rounded-full" onClick={addUser}>+</button>
+                    <button className="w-10 h-10 border-2 border-solid rounded-full aspect-square" onClick={addUser}>+</button>
 
                 </div>
             </div>

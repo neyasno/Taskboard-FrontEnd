@@ -9,7 +9,7 @@ export default function BaseModalLayout({children}: {children: ReactNode}) {
 
     return (
         <div className={`z-50 w-screen h-screen bg-modal flex items-center justify-center fixed`} onClick={closeModal}>
-            <div className="bg-black w-1/2 p-5" onClick={e=> e.stopPropagation()}>
+            <div className="bg-black w-80 p-5" onClick={e=> e.stopPropagation()}>
                 {children}
             </div>
             
