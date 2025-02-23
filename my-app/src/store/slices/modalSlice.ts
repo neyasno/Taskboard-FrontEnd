@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export enum ModalType {
     None,
     NewTaskboard,
-    NewTask
+    NewTask , 
+    NewContainer
 };
 
 type ModalSlice = {
@@ -19,6 +20,7 @@ const modalSlice = createSlice({
     initialState : initialState ,
     reducers : {
         setModalType: (state, action)=>{
+            console.log(action.payload)
             state.type = action.payload
         }
     }
