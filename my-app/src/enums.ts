@@ -8,7 +8,8 @@ export enum EApi{
     VERIFICATION = USERS + "/verification" ,
     REGISTRATION = USERS + "/registration" ,
 
-    TASKBOARDS = DEFAULT + "/taskboards"
+    TASKBOARDS = DEFAULT + "/taskboards",
+    TASKBOARD = DEFAULT + "/taskboards/"
 
 
 }

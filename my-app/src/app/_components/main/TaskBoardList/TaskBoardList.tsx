@@ -9,6 +9,7 @@ import Loading from '../../common/Loading'
 import { useAppDispatch } from '@/store/store'
 import { setCurrentTaskBoard } from '@/store/slices/taskBoardsSlice'
 import { ETaskBoardStatus } from './StatusIndicator'
+import { ITaskBoard } from '@/_server/models/Taskboard'
 
 const testBoards = [
   {
@@ -48,10 +49,10 @@ export default function TaskBoardList() {
   useEffect(()=>{
 
     const getTaskBoards = async () => {
-      const result : [] = await fetchApi(EApi.TASKBOARDS , "GET" );
-      console.log(result)
-      if(result.length > 0 ){
-        console.log(result[0])
+      const result : ITaskBoard[] = await fetchApi(EApi.TASKBOARDS , "GET" );
+
+      if(result.length  > 0){
+        if(result[0])
         dispatch(setCurrentTaskBoard(result[0]._id))
       }
 
