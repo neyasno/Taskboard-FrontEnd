@@ -10,7 +10,6 @@ export default function TaskBoardHeader() {
     <nav className='flex w-full bg-transparent items-center justify-end gap-2 pb-2'>
         <CreateContainerButton/>
         <Search/>
-        <NewCategoryButton/>
         <Users/>
         {/* <History/> */}
         <DeleteButton/>
