@@ -11,10 +11,18 @@
     "main":{
         "taskboard":{
             "forms":{
-                "title": "Title",
-                "add_user": "Add User",
-                "email": "E-mail",
-                "create_taskboard": "Create"
+                "new_taskboard": {
+                    "title": "Title",
+                    "add_user": "Add User",
+                    "email": "E-mail",
+                    "create_taskboard": "Create"
+                },
+                "new_task": {
+                    "title": "Title",
+                    "description": "Description",
+                    "priority": "Priority",
+                    "create_task": "Create"
+                }
             }
         }
     }
