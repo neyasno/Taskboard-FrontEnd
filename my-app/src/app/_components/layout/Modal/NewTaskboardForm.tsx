@@ -40,7 +40,7 @@ export default function NewTaskboardForm({}) {
 
     const createHandler = async () => {
         try{
-            await fetchApi(EApi.TASKBOARDS, "POST", {
+            const resp = await fetchApi(EApi.TASKBOARDS, "POST", {
                 title: title,
                 users: users.map(x => x.email)
             });

@@ -63,7 +63,7 @@ export default function TaskBoardList() {
     getTaskBoards();
     
     setIsLoading(false)
-  } ,[])
+  } ,[]);
 
   return (
     <nav>
