@@ -1,18 +1,31 @@
 'use client'
+import { EApi } from '@/enums'
 import { ModalType, setModalType } from '@/store/slices/modalSlice'
-import { setCurrentContainer } from '@/store/slices/taskBoardsSlice'
-import { useAppDispatch } from '@/store/store'
+import { ContentStatus, setContainerStatus, setCurrentContainer } from '@/store/slices/taskBoardsSlice'
+import { useAppDispatch, useAppSelector } from '@/store/store'
+import fetchApi from '@/utils/fetchApi'
 import Image from 'next/image'
 import React from 'react'
 
 export default function TaskContainerHeader({title , _id} : {title : string , _id : string }) {
 
+
+  const state = useAppSelector(state => state.taskBoards)
   const dispatch = useAppDispatch()
 
   const openCreateTaskForm = (e : React.MouseEvent<HTMLElement , MouseEvent>) => {
     e.preventDefault()
     dispatch(setCurrentContainer(_id))
     dispatch(setModalType(ModalType.NewTask))
+  }
+
+  const deleteContainerReq = async (e : React.MouseEvent<HTMLElement , MouseEvent>) => {
+    e.preventDefault()
+
+    const res = await fetchApi(EApi.TASKBOARD + state.currentTaskBoardId + "/"+ _id , "DELETE").then(()=>{
+      dispatch(setContainerStatus(ContentStatus.NOT_ACTUAL))
+    });
+
   }
 
   return (
@@ -25,7 +38,8 @@ export default function TaskContainerHeader({title , _id} : {title : string , _i
             <button className='bg-black_l rounded-full text-center p-1.5 pt-2 px-2 justify-center items-center hover:bg-black_ll'>
               <Image src={'/settings.svg'} alt='settings' width={20} height={20}/>
             </button>
-            <button className='bg-black_l rounded-full text-center p-1.5 pt-2 px-2 justify-center items-center hover:bg-black_ll'>
+            <button className='bg-black_l rounded-full text-center p-1.5 pt-2 px-2 justify-center items-center hover:bg-black_ll'
+                    onClick={deleteContainerReq}>
               <Image src={'/cross.svg'} alt='settings' width={12} height={12}/>
             </button>
         </div>

@@ -16,8 +16,11 @@ export default function TaskBoard() {
   const dispatch = useAppDispatch()
 
   useEffect(()=>{
+
+    console.log(state.currentTaskBoardId)
     const fetchTaskBoard = async ()=> {
       if(state.currentTaskBoardId != "0"){
+        console.log("state.currentTaskBoardId")
         const res = await fetchApi(EApi.TASKBOARD + state.currentTaskBoardId , 'GET')
         console.log(res)
         setTaskContainers(res)
@@ -25,10 +28,12 @@ export default function TaskBoard() {
     }
     
     fetchTaskBoard().finally(()=>{
+      console.log("EFFFFFFF2222")
+      setTimeout(()=>{},2000)
       dispatch(setContainerStatus(ContentStatus.ACTUAL))
     })
 
-  } , [state.taskContainersStatus])
+  } , [ state.currentTaskBoardId , state.taskContainersStatus])
 
   return (
     <div className='flex flex-col bg-black_l px-4 py-2'>
