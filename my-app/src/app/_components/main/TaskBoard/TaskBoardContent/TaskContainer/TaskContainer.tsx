@@ -1,38 +1,33 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Task, { TaskProps } from './Task'
 import TaskContainerHeader from './TaskContainerHeader'
+import fetchApi from '@/utils/fetchApi'
+import { EApi } from '@/enums'
+import { useAppSelector } from '@/store/store'
 
 export type TaskContainerProps ={
+    _id : string
     title : string 
 }
 
-const testData : TaskProps[] = [
-    {
-        id : "" ,
-        title : "Sasha ",
-        isCompleted : false ,
-    },
-    {
-        id : "" ,
-        title : "Sasha ",
-        isCompleted : false ,
-    },
-    {
-        id : "" ,
-        title : "Sasha ",
-        isCompleted : false ,
-    },
-    {
-        id : "" ,
-        title : "Sasha ",
-        isCompleted : true ,
-    },
-]
+export default function TaskContainer({title , _id} : TaskContainerProps) {
 
-export default function TaskContainer({title} : TaskContainerProps) {
+  const [tasks, setTasks] = useState<TaskProps[]>([]);
 
-  const [tasks, setTasks] = useState<TaskProps[]>(testData);
+  const {currentContainerId , currentTaskBoardId} = useAppSelector(state => state.taskBoards)
+
+  useEffect(()=>{
+
+    const getTasksReq = async () => {
+        const res = await fetchApi(EApi.TASKBOARD + currentTaskBoardId + "/" + _id , 'GET')
+        console.log(res)
+        setTasks(res)
+    }
+
+    getTasksReq();
+
+  } , [])
 
   const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
     console.log("over")
@@ -49,12 +44,13 @@ export default function TaskContainer({title} : TaskContainerProps) {
   };
 
   return (
-    <li className='flex flex-col bg-black gap-3 px-3 w-full rounded-lg ' onDrop={handleDrop} onDragOver={handleDragOver}>
+    <li className='flex flex-col bg-black gap-3 px-3 rounded-lg min-w-72
+    ' onDrop={handleDrop} onDragOver={handleDragOver}>
         <div className='pl-2'>
-            <TaskContainerHeader title={title}/>
+            <TaskContainerHeader title={title} _id={_id}/>
         </div>
         <ul className='flex flex-col gap-2 bg-black_l rounded-lg mb-3'>
-            {tasks.map( (t,index) => <Task id={t.id} isCompleted={t.isCompleted} title={t.title} key={index}/>)}
+            {tasks.map( (t,index) => {console.log(t.title) ; return <Task _id={t._id} isCompleted={t.isCompleted} title={t.title} key={index}/>})}
         </ul>
     </li>
   )

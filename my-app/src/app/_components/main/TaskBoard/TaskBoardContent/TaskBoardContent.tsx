@@ -12,8 +12,8 @@ export default function TaskBoardContent({taskContainers} : {taskContainers : Ta
     },[currentTaskBoardId])
 
   return (
-    <ul className='flex gap-2'>
-        {taskContainers.map( (tc,index) => <TaskContainer title={tc.title} key={index}/>)}
+    <ul className='flex gap-2 overflow-x-scroll'>
+        {taskContainers.map( (tc,index) => <TaskContainer title={tc.title} key={index} _id={tc._id}/>)}
     </ul>
   )
 }

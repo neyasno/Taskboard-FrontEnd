@@ -9,7 +9,9 @@ export enum EApi{
     REGISTRATION = USERS + "/registration" ,
 
     TASKBOARDS = DEFAULT + "/taskboards",
-    TASKBOARD = DEFAULT + "/taskboards/"
+    TASKBOARD = DEFAULT + "/taskboards/" ,
+
+    TACK_CONTAINER = DEFAULT + "/taskcontainer"
 
 
 }

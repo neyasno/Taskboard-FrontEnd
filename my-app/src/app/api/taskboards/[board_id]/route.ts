@@ -6,11 +6,11 @@ import { isAuthenticated } from "@/utils/jwt";
 import { NextResponse } from "next/server";
 
 
-export async function GET(req: Request , {params} : { params : { id : string} }) {
+export async function GET(req: Request , {params} : { params : { board_id : string} }) {
     try {
       await dbConnect();
 
-      const taskBoardId = (await params).id;
+      const taskBoardId = (await params).board_id;
 
       const userEmail = await isAuthenticated(req);
       if (!userEmail) {
@@ -43,11 +43,11 @@ export async function GET(req: Request , {params} : { params : { id : string} })
     }
 }
 
-export async function DELETE(req: Request , {params} : { params : { id : string} }) {
+export async function DELETE(req: Request , {params} : { params : { board_id : string} }) {
   try {
     await dbConnect();
 
-    const taskBoardId = (await params).id;
+    const taskBoardId = (await params).board_id;
 
     const userEmail = await isAuthenticated(req);
     if (!userEmail) {
@@ -73,11 +73,11 @@ export async function DELETE(req: Request , {params} : { params : { id : string}
   }
 }
 
-export async function POST(req: Request , {params} : { params : { id : string} }) {
+export async function POST(req: Request , {params} : { params : { board_id : string} }) {
   try {
     await dbConnect();
 
-    const taskBoardId = (await params).id;
+    const taskBoardId = (await params).board_id;
     const body = await req.json();
 
     const userEmail = await isAuthenticated(req);

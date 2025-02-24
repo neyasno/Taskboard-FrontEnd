@@ -1,6 +1,5 @@
 'use client'
 
-import Button from '@/app/_components/common/Button'
 import { EApi } from '@/enums';
 import { useAppSelector } from '@/store/store';
 import fetchApi from '@/utils/fetchApi';
@@ -11,7 +10,7 @@ export default function DeleteButton() {
 
   const currentTaskBoardId = useAppSelector(state => state.taskBoards.currentTaskBoardId)
 
-  const deleteHandler = async ( e: React.MouseEvent<HTMLElement , MouseEvent>) => {
+  const deleteHandler = async ( e : React.MouseEvent<HTMLElement , MouseEvent>) => {
     const res = await fetchApi(EApi.TASKBOARD + currentTaskBoardId , "DELETE")
     console.log(res)
   };
