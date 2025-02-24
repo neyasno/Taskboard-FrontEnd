@@ -20,8 +20,6 @@ export default function Header() {
 
   useEffect(()=>{} , [user.isLogined])
 
-  
-
   return (
     <div className='bg-black
                     w-full
@@ -33,7 +31,7 @@ export default function Header() {
       <div className='flex flex-nowrap 
                       gap-x-2'>
         
-        <div className='text-xl my-auto'>TaskBoard</div>
+        <div className='text-xl my-auto hover:cursor-pointer' onClick={()=> user.isLogined && router.push(ERoutes.DEFAULT)}>TaskBoard</div>
 
       </div>
 
