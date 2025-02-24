@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl";
 
 export default function NewTaskboardForm({}) {
 
-    const t = useTranslations('components.main.taskboard.forms');
+    const t = useTranslations('components.main.taskboard.forms.new_taskboard');
 
     const dispatcher = useAppDispatch();
 
@@ -40,7 +40,7 @@ export default function NewTaskboardForm({}) {
 
     const createHandler = async () => {
         try{
-            await fetchApi(EApi.TASKBOARDS, "POST", {
+            const resp = await fetchApi(EApi.TASKBOARDS, "POST", {
                 title: title,
                 users: users.map(x => x.email)
             });
@@ -65,14 +65,8 @@ export default function NewTaskboardForm({}) {
                     <button className="w-10 h-10 border-2 border-solid rounded-full aspect-square" onClick={()=>removeUser(user.id)}>-</button>
                 </div>)}
 
-                <div className="flex items-center">
-                    
-                    <span className="w-full shadow-inner [box-shadow:inset_0_-25px_15px_rgba(0,0,0,0.4);]">
-                        <TextInput value="" placeholder={t("add_user")} handleChange={()=>{}} readonly/>
-                    </span>
-                    <button className="w-10 h-10 border-2 border-solid rounded-full aspect-square" onClick={addUser}>+</button>
+                <Button text={t("add_user")} handleClick={addUser}/>
 
-                </div>
             </div>
             
             <div className="mt-5">

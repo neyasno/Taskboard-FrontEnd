@@ -32,7 +32,7 @@ export default function TaskContainer({title , _id} : TaskContainerProps) {
         setTimeout(()=>{setIsLoading(false)} , 2000)
     });
 
-  } , [])
+  } , [currentTaskBoardId, _id])
 
   const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
     console.log("over")

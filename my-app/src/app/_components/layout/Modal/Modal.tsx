@@ -29,7 +29,6 @@ export default function Modal() {
         return <BaseModalLayout>
                 <NewContainerForm />
               </BaseModalLayout>;
-
       default:
         throw new Error("NO SUCH MODAL TYPE EXISTS. HOW YOU DID IT?");
     }

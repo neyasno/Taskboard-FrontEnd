@@ -11,10 +11,18 @@
     "main":{
         "taskboard":{
             "forms":{
-                "title": "Название",
-                "add_user": "Добавить пользователя",
-                "email": "Почта",
-                "create_taskboard": "Создать"
+                "new_taskboard":{
+                    "title": "Название",
+                    "add_user": "Добавить пользователя",
+                    "email": "Почта",
+                    "create_taskboard": "Создать"
+                },
+                "new_task": {
+                    "title": "Название",
+                    "description": "Описание",
+                    "priority": "Приоритет",
+                    "create_task": "Создать"
+                }
             }
         }
     }
