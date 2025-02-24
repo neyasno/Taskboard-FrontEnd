@@ -65,10 +65,23 @@ export default function TaskContainer({title , _id} : TaskContainerProps) {
                     <TaskContainerHeader title={title} _id={_id}/>
                 </div>
                 <ul className='flex flex-col gap-2 bg-black_l rounded-lg mb-3'>
-                    {tasks.map( (t,index) => 
-                        <Task _id={t._id} isCompleted={t.isCompleted} title={t.title} key={index}
-                            containerId={_id} setContainerTasks={setTasks}/>
-                    )}
+                    
+                {isLoading ? <Loading/> : 
+
+                    <li className='flex flex-col bg-black gap-3 px-3 rounded-lg min-w-72
+                    ' onDrop={handleDrop} onDragOver={handleDragOver}>
+                        <div className='pl-2'>
+                            <TaskContainerHeader title={title} _id={_id}/>
+                        </div>
+                        <ul className='flex flex-col gap-2 bg-black_l rounded-lg mb-3'>
+                            {tasks.map( (t,index) => 
+                                <Task _id={t._id} isCompleted={t.isCompleted} title={t.title} key={index}
+                                    containerId={_id} setContainerTasks={setTasks}/>
+                            )}
+                        </ul>
+                    </li>
+
+                }
                 </ul>
             </li>
         
