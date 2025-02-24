@@ -6,7 +6,7 @@ import React from 'react'
 import BaseModalLayout from './BaseModalLayout';
 import NewTaskboardForm from './NewTaskboardForm';
 import NewTaskForm from './NewTaskForm';
-import NewCategoryForm from './NewCategoryForm';
+import NewContainerForm from './NewContainerForm';
 
 export default function Modal() {
     const state = useAppSelector(state => state.modal)
@@ -24,12 +24,11 @@ export default function Modal() {
         return <BaseModalLayout>
                 <NewTaskForm />
               </BaseModalLayout>;
-
-      case ModalType.NewCategory:
+      
+      case ModalType.NewContainer:
         return <BaseModalLayout>
-                <NewCategoryForm />
+                <NewContainerForm />
               </BaseModalLayout>;
-
       default:
         throw new Error("NO SUCH MODAL TYPE EXISTS. HOW YOU DID IT?");
     }

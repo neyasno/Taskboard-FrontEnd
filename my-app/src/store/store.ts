@@ -4,6 +4,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import userReducer from './slices/userSlice'
 import modalReducer from './slices/modalSlice'
 import taskBoardsReducer from './slices/taskBoardsSlice'
+import dragReducer from './slices/dragSlice'
 import { thunk } from 'redux-thunk';
 
 export const store = configureStore({
@@ -11,6 +12,7 @@ export const store = configureStore({
     user : userReducer , 
     modal : modalReducer , 
     taskBoards : taskBoardsReducer , 
+    drag : dragReducer ,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk)
 });

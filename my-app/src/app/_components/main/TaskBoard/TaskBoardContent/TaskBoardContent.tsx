@@ -3,23 +3,7 @@ import React, { useEffect } from 'react'
 import TaskContainer, { TaskContainerProps } from './TaskContainer/TaskContainer'
 import { useAppSelector } from '@/store/store'
 
-const testData : TaskContainerProps[] = [
-    {
-        title : "Da da"
-    },
-    {
-        title : "Da da"
-    },
-    {
-        title : "Da da"
-    },
-    {
-        title : "Da da"
-    },
-
-]
-
-export default function TaskBoardContent() {
+export default function TaskBoardContent({taskContainers} : {taskContainers : TaskContainerProps[]}) {
 
     const currentTaskBoardId = useAppSelector(state => state.taskBoards.currentTaskBoardId)
 
@@ -28,8 +12,8 @@ export default function TaskBoardContent() {
     },[currentTaskBoardId])
 
   return (
-    <ul className='flex gap-2'>
-        {testData.map( (tc,index) => <TaskContainer title={tc.title} key={index}/>)}
+    <ul className='flex gap-2 overflow-x-scroll'>
+        {taskContainers.map( (tc,index) => <TaskContainer title={tc.title} key={index} _id={tc._id}/>)}
     </ul>
   )
 }
