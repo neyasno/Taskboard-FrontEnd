@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/store/store";
 import fetchApi from "@/utils/fetchApi";
 import { EApi } from "@/enums";
 import { ModalType, setModalType } from "@/store/slices/modalSlice";
+import { ContentStatus, setTasksStatus } from "@/store/slices/taskBoardsSlice";
 
 
 export default function NewTaskForm({}) {
@@ -26,7 +27,7 @@ export default function NewTaskForm({}) {
         console.log(res) 
         
 
-
+        dispatcher(setTasksStatus(ContentStatus.NOT_ACTUAL))
         dispatcher(setModalType(ModalType.None))
         
     }

@@ -7,6 +7,7 @@ import { EApi } from '@/enums'
 import { useAppDispatch, useAppSelector } from '@/store/store'
 import { EDragAndDropStatus, setDragStatus } from '@/store/slices/dragSlice'
 import Loading from '@/app/_components/common/Loading'
+import { ContentStatus, setTasksStatus } from '@/store/slices/taskBoardsSlice'
 
 export type TaskContainerProps ={
     _id : string
@@ -19,20 +20,21 @@ export default function TaskContainer({title , _id} : TaskContainerProps) {
   const [isLoading , setIsLoading] = useState(true);
   const dispatch = useAppDispatch();
 
-  const currentTaskBoardId = useAppSelector(state => state.taskBoards.currentTaskBoardId)
+  const state = useAppSelector(state => state.taskBoards)
 
   useEffect(()=>{
 
     const getTasksReq = async () => {
-        const res = await fetchApi(EApi.TASKBOARD + currentTaskBoardId + "/" + _id , 'GET')
+        const res = await fetchApi(EApi.TASKBOARD + state.currentTaskBoardId + "/" + _id , 'GET')
         setTasks(res)
     }
 
     getTasksReq().finally(()=>{
         setTimeout(()=>{setIsLoading(false)} , 2000)
+        dispatch(setTasksStatus(ContentStatus.ACTUAL))
     });
 
-  } , [currentTaskBoardId, _id])
+  } , [state.tasksStatus])
 
   const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
     console.log("over")
@@ -41,11 +43,12 @@ export default function TaskContainer({title , _id} : TaskContainerProps) {
 
   const handleDrop = (e : React.DragEvent<HTMLLIElement>) => {
     e.preventDefault();
-    console.log("DROPP")
+    
     const taskId = e.dataTransfer.getData("taskId");
     const taskTitle = e.dataTransfer.getData("title");
     const taskDescription = e.dataTransfer.getData("description");
     const containerID = e.dataTransfer.getData("containerID");
+
     if (_id == containerID) return;
 
     console.log( taskId + "with text | " + taskTitle + " | to" + _id )
@@ -68,18 +71,10 @@ export default function TaskContainer({title , _id} : TaskContainerProps) {
                     
                 {isLoading ? <Loading/> : 
 
-                    <li className='flex flex-col bg-black gap-3 px-3 rounded-lg min-w-72
-                    ' onDrop={handleDrop} onDragOver={handleDragOver}>
-                        <div className='pl-2'>
-                            <TaskContainerHeader title={title} _id={_id}/>
-                        </div>
-                        <ul className='flex flex-col gap-2 bg-black_l rounded-lg mb-3'>
-                            {tasks.map( (t,index) => 
-                                <Task _id={t._id} isCompleted={t.isCompleted} title={t.title} key={index}
-                                    containerId={_id} setContainerTasks={setTasks}/>
-                            )}
-                        </ul>
-                    </li>
+                    <>{tasks.map( (t,index) => 
+                        <Task _id={t._id} isCompleted={t.isCompleted} title={t.title} key={index}
+                            containerId={_id} setContainerTasks={setTasks}/>
+                    )}</>
 
                 }
                 </ul>

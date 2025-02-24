@@ -6,8 +6,8 @@ import CreateTaskBoardButton from './CreateTaskBoardButton'
 import fetchApi from '@/utils/fetchApi'
 import { EApi } from '@/enums'
 import Loading from '../../common/Loading'
-import { useAppDispatch } from '@/store/store'
-import { setCurrentTaskBoard } from '@/store/slices/taskBoardsSlice'
+import { useAppDispatch, useAppSelector } from '@/store/store'
+import { ContentStatus, setCurrentTaskBoard, setTaskBoardsStatus } from '@/store/slices/taskBoardsSlice'
 import { ETaskBoardStatus } from './StatusIndicator'
 import { ITaskBoard } from '@/_server/models/Taskboard'
 
@@ -44,7 +44,9 @@ export default function TaskBoardList() {
   const [taskBoards , setTaskBoards] = useState<TaskBoardHeadProps[]>(testBoards) 
   const [isLoading , setIsLoading] = useState(true)
   
+  const taskBoardsStatus = useAppSelector(state => state.taskBoards.taskBoardsStatus)
   const dispatch = useAppDispatch();
+
 
   useEffect(()=>{
 
@@ -63,7 +65,8 @@ export default function TaskBoardList() {
     getTaskBoards();
     
     setIsLoading(false)
-  } ,[]);
+    dispatch(setTaskBoardsStatus(ContentStatus.ACTUAL))
+  } ,[taskBoardsStatus]);
 
   return (
     <nav>

@@ -6,6 +6,7 @@ import fetchApi from '@/utils/fetchApi';
 import { EApi } from '@/enums';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { ModalType, setModalType } from '@/store/slices/modalSlice';
+import { ContentStatus, setContainerStatus } from '@/store/slices/taskBoardsSlice';
 
 export default function NewContainerForm() {
   const [title , setTitle] = useState("");
@@ -18,6 +19,7 @@ export default function NewContainerForm() {
     const res = await fetchApi(EApi.TASKBOARD + current_id , 'POST' , {title : title})
     console.log(res) 
 
+    dispatcher(setContainerStatus(ContentStatus.NOT_ACTUAL))
     dispatcher(setModalType(ModalType.None))
   }
 

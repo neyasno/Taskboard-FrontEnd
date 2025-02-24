@@ -6,6 +6,7 @@ import fetchApi from "@/utils/fetchApi";
 import { useAppDispatch } from "@/store/store";
 import { ModalType, setModalType } from "@/store/slices/modalSlice";
 import { useTranslations } from "next-intl";
+import { ContentStatus, setTaskBoardsStatus } from "@/store/slices/taskBoardsSlice";
 
 
 export default function NewTaskboardForm({}) {
@@ -48,6 +49,7 @@ export default function NewTaskboardForm({}) {
         } catch(e){
             console.log(e);  
         } finally{
+            dispatcher(setTaskBoardsStatus(ContentStatus.NOT_ACTUAL))
             dispatcher(setModalType(ModalType.None));
         }
     };
