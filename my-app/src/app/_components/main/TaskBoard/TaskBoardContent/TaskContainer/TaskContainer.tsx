@@ -4,7 +4,9 @@ import Task, { TaskProps } from './Task'
 import TaskContainerHeader from './TaskContainerHeader'
 import fetchApi from '@/utils/fetchApi'
 import { EApi } from '@/enums'
-import { useAppSelector } from '@/store/store'
+import { useAppDispatch, useAppSelector } from '@/store/store'
+import { EDragAndDropStatus, setDragStatus } from '@/store/slices/dragSlice'
+import Loading from '@/app/_components/common/Loading'
 
 export type TaskContainerProps ={
     _id : string
@@ -14,18 +16,21 @@ export type TaskContainerProps ={
 export default function TaskContainer({title , _id} : TaskContainerProps) {
 
   const [tasks, setTasks] = useState<TaskProps[]>([]);
+  const [isLoading , setIsLoading] = useState(true);
+  const dispatch = useAppDispatch();
 
-  const {currentContainerId , currentTaskBoardId} = useAppSelector(state => state.taskBoards)
+  const currentTaskBoardId = useAppSelector(state => state.taskBoards.currentTaskBoardId)
 
   useEffect(()=>{
 
     const getTasksReq = async () => {
         const res = await fetchApi(EApi.TASKBOARD + currentTaskBoardId + "/" + _id , 'GET')
-        console.log(res)
         setTasks(res)
     }
 
-    getTasksReq();
+    getTasksReq().finally(()=>{
+        setTimeout(()=>{setIsLoading(false)} , 2000)
+    });
 
   } , [])
 
@@ -38,20 +43,36 @@ export default function TaskContainer({title , _id} : TaskContainerProps) {
     e.preventDefault();
     console.log("DROPP")
     const taskId = e.dataTransfer.getData("taskId");
-    //if (!taskId) return;
+    const taskTitle = e.dataTransfer.getData("title");
+    const taskDescription = e.dataTransfer.getData("description");
+    const containerID = e.dataTransfer.getData("containerID");
+    if (_id == containerID) return;
 
-    setTasks([...tasks , {id : "haha" , isCompleted : false , title: " new"}]);
+    console.log( taskId + "with text | " + taskTitle + " | to" + _id )
+
+    setTasks([...tasks , {_id : taskId , isCompleted : false , title: taskTitle}]);
+    
+    dispatch(setDragStatus(EDragAndDropStatus.COMPLETED))
   };
 
   return (
-    <li className='flex flex-col bg-black gap-3 px-3 rounded-lg min-w-72
-    ' onDrop={handleDrop} onDragOver={handleDragOver}>
-        <div className='pl-2'>
-            <TaskContainerHeader title={title} _id={_id}/>
-        </div>
-        <ul className='flex flex-col gap-2 bg-black_l rounded-lg mb-3'>
-            {tasks.map( (t,index) => {console.log(t.title) ; return <Task _id={t._id} isCompleted={t.isCompleted} title={t.title} key={index}/>})}
-        </ul>
-    </li>
+    <>
+        {isLoading ? <Loading/> : 
+
+            <li className='flex flex-col bg-black gap-3 px-3 rounded-lg min-w-72
+            ' onDrop={handleDrop} onDragOver={handleDragOver}>
+                <div className='pl-2'>
+                    <TaskContainerHeader title={title} _id={_id}/>
+                </div>
+                <ul className='flex flex-col gap-2 bg-black_l rounded-lg mb-3'>
+                    {tasks.map( (t,index) => 
+                        <Task _id={t._id} isCompleted={t.isCompleted} title={t.title} key={index}
+                            containerId={_id} setContainerTasks={setTasks}/>
+                    )}
+                </ul>
+            </li>
+        
+        }
+    </>
   )
 }

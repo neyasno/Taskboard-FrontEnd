@@ -8,7 +8,7 @@ export default function TaskElement({id , title , isCompleted} : TaskProps) {
         {isCompleted ? 
             <div className='size-3 bg-green-500 border-2 border-black rounded-full'></div>
             : 
-            <div className='size-3 bg-transparent border-2 border-black rounded-full '></div>              
+            <div className='size-3 bg-blue-500  border-2 border-black rounded-full '></div>              
         }
     </div>
   )
