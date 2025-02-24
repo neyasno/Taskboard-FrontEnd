@@ -6,6 +6,7 @@ import React from 'react'
 import BaseModalLayout from './BaseModalLayout';
 import NewTaskboardForm from './NewTaskboardForm';
 import NewTaskForm from './NewTaskForm';
+import NewCategoryForm from './NewCategoryForm';
 
 export default function Modal() {
     const state = useAppSelector(state => state.modal)
@@ -22,6 +23,11 @@ export default function Modal() {
       case ModalType.NewTask:
         return <BaseModalLayout>
                 <NewTaskForm />
+              </BaseModalLayout>;
+
+      case ModalType.NewCategory:
+        return <BaseModalLayout>
+                <NewCategoryForm />
               </BaseModalLayout>;
 
       default:

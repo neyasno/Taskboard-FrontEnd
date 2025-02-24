@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 export enum ModalType {
     None,
     NewTaskboard,
-    NewTask
+    NewTask,
+    NewCategory
 };
 
 type ModalSlice = {

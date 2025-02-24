@@ -25,7 +25,7 @@ export default function TaskBoardHead({ _id , status ,title} : TaskBoardHeadProp
     e.preventDefault()
     if(isActive) return;
 
-    dispatch(setCurrentTaskBoard(id))
+    dispatch(setCurrentTaskBoard(_id))
   }
 
   return (
