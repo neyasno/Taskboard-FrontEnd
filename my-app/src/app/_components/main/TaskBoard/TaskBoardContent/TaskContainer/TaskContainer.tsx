@@ -64,12 +64,12 @@ export default function TaskContainer({title , _id} : TaskContainerProps) {
     <>
         {isLoading ? <Loading/> : 
 
-            <li className='flex flex-col bg-black gap-3 px-3 rounded-lg min-w-72
+            <li className='flex flex-col bg-white dark:bg-black gap-3 px-3 rounded-lg min-w-72
             ' onDrop={handleDrop} onDragOver={handleDragOver}>
                 <div className='pl-2'>
                     <TaskContainerHeader title={title} _id={_id}/>
                 </div>
-                <ul className={`flex flex-col gap-2 bg-black_l rounded-lg mb-3`}>
+                <ul className={`flex flex-col gap-2 bg-white_d dark:bg-black_l rounded-lg mb-3`}>
                     
                 {isLoading ? <Loading/> : 
 

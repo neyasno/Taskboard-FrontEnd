@@ -8,6 +8,8 @@ import { useAppSelector } from '@/store/store'
 import { useRouter } from '@/i18n/routing'
 import { ERoutes } from '@/enums'
 import { useTranslations } from 'next-intl'
+import ThemeButton from './ThemeButton'
+import { useTheme } from 'next-themes'
 
 export default function Header() {
 
@@ -17,11 +19,16 @@ export default function Header() {
   const user = useAppSelector(state=>state.user);
 
   const router = useRouter();
+  const {theme , setTheme} = useTheme()
 
   useEffect(()=>{} , [user.isLogined])
 
   return (
-    <div className='bg-black
+    <div className='
+                    
+                    dark:bg-black
+                    
+                    
                     w-full
                     flex flex-nowrap
                     justify-between
@@ -34,24 +41,28 @@ export default function Header() {
         <div className='text-xl my-auto hover:cursor-pointer' onClick={()=> user.isLogined && router.push(ERoutes.DEFAULT)}>TaskBoard</div>
 
       </div>
+      <div className='flex gap-4'>
+        <ThemeButton/>
+        { user.isLogined && (
+          <div className='relative inline-block p-1 m-1 rounded-full hover:bg-black_l'
+            onMouseEnter={() => setEnableDropdown(true)}
+            onMouseLeave={() => setEnableDropdown(false)}
+          >
 
-      { user.isLogined && (
-        <div className='relative inline-block p-1 m-1 rounded-full hover:bg-black_l'
-          onMouseEnter={() => setEnableDropdown(true)}
-          onMouseLeave={() => setEnableDropdown(false)}
-        >
-
-          <Image alt='profile' src={'/profile.svg'} width={30} height={30}/>
-          <DropdownMenu enabled={enableDropdown} className='right-0'>
-            <div className='w-40 p-2 flex-col gap-4'>
-              <Button text={t("settings")} handleClick={()=>{console.log("SETTINGS"); router.push(ERoutes.PROFILE_SETTINGS)}}/>
-              <div className='h-1'></div>
-              <Button text={t("logout")} handleClick={()=>{console.log("EXIT"); localStorage.clear(); router.push(ERoutes.LOGIN)}}/>
-            </div>
-          </DropdownMenu>
+            <Image alt='profile' src={theme == "dark" ? '/profile.svg' : 'dark/profile.svg'} width={30} height={30}/>
             
-        </div>
-      )}
+            <DropdownMenu enabled={enableDropdown} className='right-0'>
+              <div className='w-40 p-2 flex-col gap-4'>
+                <Button text={t("settings")} handleClick={()=>{console.log("SETTINGS"); router.push(ERoutes.PROFILE_SETTINGS)}}/>
+                <div className='h-1'></div>
+                <Button text={t("logout")} handleClick={()=>{console.log("EXIT"); localStorage.clear(); router.push(ERoutes.LOGIN)}}/>
+              </div>
+            </DropdownMenu>
+              
+          </div>
+        )}
+      </div>
+      
       
     </div>
   )

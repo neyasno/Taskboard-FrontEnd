@@ -3,6 +3,6 @@ import React, { ReactNode } from 'react'
 
 export default function ThemesProvider({children} : {children : ReactNode}) {
   return (
-    <ThemeProvider defaultTheme='system'>{children}</ThemeProvider>
+    <ThemeProvider attribute={'class'} defaultTheme='system' >{children}</ThemeProvider>
   )
 }

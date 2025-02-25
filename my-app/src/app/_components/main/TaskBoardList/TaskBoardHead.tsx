@@ -31,7 +31,7 @@ export default function TaskBoardHead({ _id , status ,title} : TaskBoardHeadProp
   return (
     <li> 
         <button onClick={changeTaskBoard} className={`flex gap-2 items-center px-4 py-2 rounded-t-lg  
-                  ${isActive ? "bg-black_l" : "bg-black hover:bg-black_l"}`}>
+                  ${isActive ? "bg-white_d dark:bg-black_l" : " bg-white_dd hover:bg-white_d dark:bg-black dark:hover:bg-black_l"}`}>
           <div>{title}</div>
           <StatusIndicator status={status}/>
         </button>

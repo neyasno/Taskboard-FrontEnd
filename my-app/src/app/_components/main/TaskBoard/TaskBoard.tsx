@@ -36,7 +36,7 @@ export default function TaskBoard() {
   } , [ state.currentTaskBoardId , state.taskContainersStatus])
 
   return (
-    <div className='flex flex-col bg-black_l px-4 py-2'>
+    <div className='flex flex-col bg-white_d dark:bg-black_l px-4 py-2'>
       <TaskBoardHeader/>
       <TaskBoardContent taskContainers={taskContainers}/>
     </div>

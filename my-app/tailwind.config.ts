@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
+  darkMode : 'class' ,
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -18,6 +19,11 @@ export default {
         black_l: "rgba(60, 60, 60)",
         black_ll: "rgba(80, 80, 80)",
         black_d: "rgba(25, 25, 25)",
+
+        white: "rgba(255, 255, 255)",
+        white_d: "rgba(190, 190, 190)",
+        white_dd: "rgba(145, 145, 145)",
+        white_c: "rgba(190, 190, 220)",
 
       },
     },
