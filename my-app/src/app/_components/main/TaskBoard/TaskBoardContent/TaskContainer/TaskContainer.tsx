@@ -41,7 +41,7 @@ export default function TaskContainer({title , _id} : TaskContainerProps) {
     e.preventDefault();
   };
 
-  const handleDrop = (e : React.DragEvent<HTMLLIElement>) => {
+  const handleDrop = async (e : React.DragEvent<HTMLLIElement>) => {
     e.preventDefault();
     
     const taskId = e.dataTransfer.getData("taskId");
@@ -56,6 +56,8 @@ export default function TaskContainer({title , _id} : TaskContainerProps) {
     setTasks([...tasks , {_id : taskId , isCompleted : false , title: taskTitle}]);
     
     dispatch(setDragStatus(EDragAndDropStatus.COMPLETED))
+
+    const res = await fetchApi(EApi.TASKBOARD + state.currentTaskBoardId + "/" + _id , 'PUT' , {task_id : taskId , sourse_id : containerID })
   };
 
   return (
@@ -67,7 +69,7 @@ export default function TaskContainer({title , _id} : TaskContainerProps) {
                 <div className='pl-2'>
                     <TaskContainerHeader title={title} _id={_id}/>
                 </div>
-                <ul className='flex flex-col gap-2 bg-black_l rounded-lg mb-3'>
+                <ul className={`flex flex-col gap-2 bg-black_l rounded-lg mb-3`}>
                     
                 {isLoading ? <Loading/> : 
 

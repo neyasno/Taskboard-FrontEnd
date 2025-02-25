@@ -139,3 +139,52 @@ export async function DELETE(req: Request , {params} : { params : { board_id : s
     return NextResponse.json({ error: `Get taskboards Error: ${error}` }, { status: 500 });
   }
 }
+
+export async function PUT(req: Request , {params} : { params : { board_id : string , container_id : string} }) {
+  try {
+    await dbConnect();
+
+    const {board_id , container_id} = (await params);
+    const body = await req.json();
+
+    const userEmail = await isAuthenticated(req);
+    if (!userEmail) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+
+    const user : IUser | null = await User.findOne({email : userEmail})
+    if(!user) return;
+
+    const taskBoard : ITaskBoard | null = await TaskBoard.findById(board_id)
+    if(!taskBoard) return;
+
+    const taskContainer : ITaskContainer | null = await TaskContainer.findById(container_id)
+    if(!taskContainer) return;
+    
+
+    if ( !taskBoard.users.includes(user.id)){
+      return NextResponse.json({ error: `User Access Error` }, { status: 403 });
+    }
+
+    const sourseId = body.sourse_id
+    const taskId = body.task_id
+     
+    const task : ITask | null = await Task.findById(taskId)
+    if(!task) return;
+
+    taskContainer.tasks.push(task._id)
+    await taskContainer.save()
+
+    await TaskContainer.findByIdAndUpdate(
+      sourseId,
+      { $pull: { tasks: task._id } },
+      { new: true }
+    );
+    console.log("COMPLETE PUT REQ")
+
+    return NextResponse.json("ok", { status: 200 });
+    
+  } catch (error) {
+    return NextResponse.json({ error: `Get taskboards Error: ${error}` }, { status: 500 });
+  }
+}
