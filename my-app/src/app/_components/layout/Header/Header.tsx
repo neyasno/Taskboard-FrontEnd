@@ -19,9 +19,9 @@ export default function Header() {
   const user = useAppSelector(state=>state.user);
 
   const router = useRouter();
-  const {theme , setTheme} = useTheme()
+  const {theme , setTheme} = useTheme();
 
-  useEffect(()=>{} , [user.isLogined])
+  useEffect(()=>{} , [user.isLogined]);
 
   return (
     <div className='
@@ -53,9 +53,9 @@ export default function Header() {
             
             <DropdownMenu enabled={enableDropdown} className='right-0'>
               <div className='w-40 p-2 flex-col gap-4'>
-                <Button text={t("settings")} handleClick={()=>{console.log("SETTINGS"); router.push(ERoutes.PROFILE_SETTINGS)}}/>
+                <Button text={t("settings")} handleClick={()=>{router.push(ERoutes.PROFILE_SETTINGS)}}/>
                 <div className='h-1'></div>
-                <Button text={t("logout")} handleClick={()=>{console.log("EXIT"); localStorage.clear(); router.push(ERoutes.LOGIN)}}/>
+                <Button text={t("logout")} handleClick={()=>{localStorage.clear(); router.push(ERoutes.LOGIN)}}/>
               </div>
             </DropdownMenu>
               

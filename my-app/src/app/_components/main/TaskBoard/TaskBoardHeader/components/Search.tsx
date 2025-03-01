@@ -1,5 +1,6 @@
 'use client'
 
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import React, { useState } from 'react'
 
@@ -7,7 +8,7 @@ export default function Search() {
 
   const [text, setText] = useState('');
 
-  const {theme , setTheme} = useState('')
+  const {theme , setTheme} = useTheme();
 
   return (
     <div className='flex bg-white dark:bg-black rounded-md'>

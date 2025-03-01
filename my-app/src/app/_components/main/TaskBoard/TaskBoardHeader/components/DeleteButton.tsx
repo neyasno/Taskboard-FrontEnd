@@ -3,12 +3,14 @@
 import { EApi } from '@/enums';
 import { useAppSelector } from '@/store/store';
 import fetchApi from '@/utils/fetchApi';
+import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import React from 'react'
 
 export default function DeleteButton() {
 
   const currentTaskBoardId = useAppSelector(state => state.taskBoards.currentTaskBoardId)
+  const {theme, setTheme} = useTheme();
 
   const deleteHandler = async ( e : React.MouseEvent<HTMLElement , MouseEvent>) => {
     const res = await fetchApi(EApi.TASKBOARD + currentTaskBoardId , "DELETE")
@@ -17,7 +19,7 @@ export default function DeleteButton() {
 
   return (
     <button className='flex rounded-full p-2 hover:bg-black' onClick={deleteHandler}>
-      <Image alt='delete' src={"/cross.svg"} width={20} height={20}/>
+      <Image alt='delete' src={ theme == 'dark' ? '/cross.svg' :'dark/cross.svg'} width={20} height={20}/>
     </button>
 );
 };
