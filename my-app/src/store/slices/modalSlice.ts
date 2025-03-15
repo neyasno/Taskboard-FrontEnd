@@ -7,6 +7,7 @@ export enum ModalType {
     NewContainer ,
     ChangeTaskboardTitle ,
     ChangeContainerTitle ,
+    ChangeTask ,
 };
 
 type ModalSlice = {

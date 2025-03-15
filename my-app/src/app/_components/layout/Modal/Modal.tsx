@@ -9,6 +9,7 @@ import NewTaskForm from './NewTaskForm';
 import NewContainerForm from './NewContainerForm';
 import ChangeTaskboardTitleForm from './ChangeTaskboardTitleForm';
 import ChangeContainerTitleForm from './ChangeContainerTitleForm';
+import ChangeTaskForm from './ChangeTaskForm';
 
 export default function Modal() {
     const state = useAppSelector(state => state.modal)
@@ -26,6 +27,10 @@ export default function Modal() {
         return <BaseModalLayout>
                 <NewTaskForm />
               </BaseModalLayout>;
+      case ModalType.ChangeTask:
+        return <BaseModalLayout>
+                <ChangeTaskForm />
+              </BaseModalLayout>;
       case ModalType.ChangeTaskboardTitle:
         return <BaseModalLayout>
                 <ChangeTaskboardTitleForm/>
@@ -38,6 +43,7 @@ export default function Modal() {
         return <BaseModalLayout>
                 <NewContainerForm />
               </BaseModalLayout>;
+
       default:
         throw new Error("NO SUCH MODAL TYPE EXISTS. HOW YOU DID IT?");
     }

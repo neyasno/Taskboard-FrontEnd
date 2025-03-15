@@ -4,7 +4,7 @@ export interface ITask extends Document {
   _id: string;
   title: string ;
   description : string; 
-  isCompleted : string ;
+  isCompleted : boolean ;
   priority : number ;
 }
 
@@ -12,7 +12,7 @@ const TaskSchema: Schema = new Schema(
   {
     title : {type : String , required : true } ,
     description : {type : String } ,
-    isCompleted : {type : String } ,
+    isCompleted : {type : Boolean } ,
     priority : {type : Number} , 
   }
 );
