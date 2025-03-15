@@ -33,10 +33,10 @@ export default function NewTaskForm({}) {
     }
 
     return (
-        <form action="">
+        <div className='flex flex-col gap-2'>
             <TextInput value={title} handleChange={setTitle} placeholder='title'/>
             <TextInput value={description} handleChange={setDescription} placeholder='description'/>
             <Button text='Create' handleClick={createContainerReq}/>
-        </form>
+        </div>
     );
 }

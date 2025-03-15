@@ -41,7 +41,7 @@ export default function ChangeTaskForm({}) {
     }
 
     return (
-        <div>
+        <div className='flex flex-col gap-2'>
             <TextInput placeholder="Title" value={task.title} handleChange={value => setTask(prev =>({ ...prev, title: value }))}/>
             <TextInput placeholder="Description" value={task.description} handleChange={value => setTask(prev =>({...prev, description: value}))}/>
             <Button text={`Status: ${task.isCompleted ? "Complete" : "Incomplete"}`} handleClick={() => setTask(prev => ({...prev, isCompleted: !prev.isCompleted}))}/>
