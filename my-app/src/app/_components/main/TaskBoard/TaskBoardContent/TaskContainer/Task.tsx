@@ -1,24 +1,25 @@
 'use client'
-import React, { ReactNode, useState } from 'react'
 import TaskElement from './TaskElement';
-import { setTasks } from '@/store/slices/userSlice';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { EDragAndDropStatus, setDragStatus } from '@/store/slices/dragSlice';
+import { setCurrentContainer, setCurrentTask } from '@/store/slices/taskBoardsSlice';
+import { ModalType, setModalType } from '@/store/slices/modalSlice';
 
-export type TaskProps ={
+export type TaskProps = {
     title : string , 
     isCompleted : boolean ,
+    description : string ,
     _id : string ,
     containerId? : string,
     setContainerTasks? : React.Dispatch<React.SetStateAction<TaskProps[]>> 
 }
 
-export default function Task({title , isCompleted , _id , containerId ,setContainerTasks} : TaskProps) {
+export default function Task({title , isCompleted, description , _id , containerId ,setContainerTasks} : TaskProps) {
 
     const dispatch = useAppDispatch();
     const dragStatus = useAppSelector(state => state.drag.status)
 
-    const taskNode = <TaskElement _id={_id} title={title} isCompleted={isCompleted}/>;
+    const taskNode = <TaskElement _id={_id} title={title} isCompleted={isCompleted} description={description}/>;
 
     const handleDragStart = ( e : React.DragEvent<HTMLLIElement>) => {
         e.dataTransfer.setData('taskID' , _id)
@@ -37,12 +38,19 @@ export default function Task({title , isCompleted , _id , containerId ,setContai
         }
         console.log("DRAG_END :" +  _id)
     }
+    
+    const handleClick = () => {
+        dispatch(setCurrentContainer(containerId))
+        dispatch(setCurrentTask(_id))
+        dispatch(setModalType(ModalType.ChangeTask))
+    }
 
   return (
     <li className='cursor-grab'       
         draggable
         onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}>
+        onDragEnd={handleDragEnd}
+        onClick={handleClick}>
                             
         {taskNode}
         

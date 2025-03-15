@@ -47,13 +47,14 @@ export default function TaskContainer({title , _id} : TaskContainerProps) {
     
     const taskId = e.dataTransfer.getData("taskId");
     const taskTitle = e.dataTransfer.getData("title");
+    const taskDescription = e.dataTransfer.getData("description");
     const containerID = e.dataTransfer.getData("containerID");
 
     if (_id == containerID) return;
 
     console.log( taskId + "with text | " + taskTitle + " | to" + _id )
 
-    setTasks([...tasks , {_id : taskId , isCompleted : false , title: taskTitle}]);
+    setTasks([...tasks , {_id : taskId , isCompleted : false , title: taskTitle, description : taskDescription}]);
     
     dispatch(setDragStatus(EDragAndDropStatus.COMPLETED))
 
@@ -74,7 +75,7 @@ export default function TaskContainer({title , _id} : TaskContainerProps) {
                 {isLoading ? <Loading/> : 
 
                     <>{tasks.map( (t,index) => 
-                        <Task _id={t._id} isCompleted={t.isCompleted} title={t.title} key={index}
+                        <Task _id={t._id} isCompleted={t.isCompleted} title={t.title} description={t.description} key={index}
                             containerId={_id} setContainerTasks={setTasks}/>
                     )}</>
 

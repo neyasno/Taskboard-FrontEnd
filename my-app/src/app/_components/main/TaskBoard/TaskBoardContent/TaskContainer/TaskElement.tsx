@@ -1,7 +1,7 @@
 import React from 'react'
 import { TaskProps } from './Task'
 
-export default function TaskElement({id , title , isCompleted} : TaskProps) {
+export default function TaskElement({id , title, description , isCompleted} : TaskProps) {
   return (
     <div className='flex p-3 items-center gap-2 dark:hover:bg-black_ll rounded-lg'>
         <p>{title}</p>
