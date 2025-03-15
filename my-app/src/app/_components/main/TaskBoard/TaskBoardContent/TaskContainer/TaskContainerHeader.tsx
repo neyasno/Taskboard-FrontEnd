@@ -12,7 +12,7 @@ export default function TaskContainerHeader({title , _id} : {title : string , _i
 
   const state = useAppSelector(state => state.taskBoards)
   const dispatch = useAppDispatch()
-  const {theme, setTheme} = useTheme();
+  const {theme} = useTheme();
 
   const openCreateTaskForm = (e : React.MouseEvent<HTMLElement , MouseEvent>) => {
     e.preventDefault()
@@ -23,11 +23,17 @@ export default function TaskContainerHeader({title , _id} : {title : string , _i
   const deleteContainerReq = async (e : React.MouseEvent<HTMLElement , MouseEvent>) => {
     e.preventDefault()
 
-    const res = await fetchApi(EApi.TASKBOARD + state.currentTaskBoardId + "/"+ _id , "DELETE").then(()=>{
+    await fetchApi(EApi.TASKBOARD + state.currentTaskBoardId + "/"+ _id , "DELETE").then(()=>{
       dispatch(setContainerStatus(ContentStatus.NOT_ACTUAL))
     });
 
   } 
+
+  const openChangeContainerForm = (e : React.MouseEvent<HTMLElement , MouseEvent>)=>{
+    e.preventDefault()
+    dispatch(setCurrentContainer(_id))
+    dispatch(setModalType(ModalType.ChangeContainerTitle))
+  }
   return (
     <div className='flex gap-2 py-2 content-between justify-between items-center'>
         <p className='text-xl font-bold'>{title}</p>
@@ -36,7 +42,8 @@ export default function TaskContainerHeader({title , _id} : {title : string , _i
                     onClick={openCreateTaskForm}>
               <Image src={ theme == 'dark' ? '/plus.svg' : 'dark/plus.svg'} alt='settings' width={20} height={20}/>
             </button>
-            <button className='bg-white_d dark:bg-black_l rounded-full text-center p-1.5 pt-2 px-2 justify-center items-center hover:bg-black_l dark:hover:bg-black_ll'>
+            <button className='bg-white_d dark:bg-black_l rounded-full text-center p-1.5 pt-2 px-2 justify-center items-center hover:bg-black_l dark:hover:bg-black_ll'
+                    onClick={openChangeContainerForm}>
               <Image src={ theme == 'dark' ? '/settings.svg' : 'dark/settings.svg'} alt='settings' width={20} height={20}/>
             </button>
             <button className='bg-white_d dark:bg-black_l rounded-full text-center p-1.5 pt-2 px-2 justify-center items-center hover:bg-black_l dark:hover:bg-black_ll'

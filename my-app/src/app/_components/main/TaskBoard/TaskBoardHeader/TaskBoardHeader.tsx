@@ -1,7 +1,7 @@
 import React from 'react'
 import Search from './components/Search'
 import Users from './components/Users'
-import History from './components/History'
+
 import DeleteButton from './components/DeleteButton'
 import CreateContainerButton from './components/CreateContainerButton'
 import ChangeTaskBoardTitle from './components/ChangeTaskBoardTitle'

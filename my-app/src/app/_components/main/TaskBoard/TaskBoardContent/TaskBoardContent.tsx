@@ -1,11 +1,11 @@
 'use client'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import TaskContainer, { TaskContainerProps } from './TaskContainer/TaskContainer'
 import { useAppSelector } from '@/store/store'
 
 export default function TaskBoardContent({taskContainers} : {taskContainers : TaskContainerProps[]}) {
 
-    const currentTaskBoardId = useAppSelector(state => state.taskBoards.currentTaskBoardId)
+    const {currentTaskBoardId} = useAppSelector(state => state.taskBoards)
 
     useEffect(()=>{
         console.log("TASKSRELOADED")
@@ -13,7 +13,7 @@ export default function TaskBoardContent({taskContainers} : {taskContainers : Ta
 
   return (
     <ul className='flex gap-2 overflow-x-scroll'>
-        {taskContainers.map( (tc,index) => <TaskContainer title={tc.title} key={tc._id} _id={tc._id}/>)}
+        {taskContainers.map( (tc, index) => <TaskContainer title={tc.title} key={tc._id} _id={tc._id}/>)}
     </ul>
   )
 }

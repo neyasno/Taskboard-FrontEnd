@@ -1,13 +1,12 @@
 import { ModalType, setModalType } from '@/store/slices/modalSlice';
-import { useAppDispatch, useAppSelector } from '@/store/store';
-import fetchApi from '@/utils/fetchApi';
+import { useAppDispatch } from '@/store/store';
+
 import { useTheme } from 'next-themes';
 import Image from 'next/image'
 import React from 'react'
 
 export default function ChangeTaskBoardTitle() {
 
-  const currentTaskBoardId = useAppSelector(state => state.taskBoards.currentTaskBoardId)
   const {theme} = useTheme();
   const dispatch  = useAppDispatch()
 

@@ -95,6 +95,7 @@ export async function POST(req: Request , {params} : { params : { board_id : str
   }
 }
 
+
 export async function DELETE(req: Request , {params} : { params : { board_id : string , container_id : string} }) {
   try {
     await dbConnect();

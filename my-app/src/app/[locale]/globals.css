@@ -9,3 +9,10 @@
 html , body{
   min-height: 100svh;
 }
+::-webkit-scrollbar{
+  display: none;
+}
+html::-webkit-scrollbar, 
+body::-webkit-scrollbar {
+  display: none;
+}

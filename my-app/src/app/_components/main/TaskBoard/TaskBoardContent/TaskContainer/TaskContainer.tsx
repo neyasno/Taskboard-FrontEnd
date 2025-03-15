@@ -46,7 +46,6 @@ export default function TaskContainer({title , _id} : TaskContainerProps) {
     
     const taskId = e.dataTransfer.getData("taskId");
     const taskTitle = e.dataTransfer.getData("title");
-    const taskDescription = e.dataTransfer.getData("description");
     const containerID = e.dataTransfer.getData("containerID");
 
     if (_id == containerID) return;
@@ -57,7 +56,7 @@ export default function TaskContainer({title , _id} : TaskContainerProps) {
     
     dispatch(setDragStatus(EDragAndDropStatus.COMPLETED))
 
-    const res = await fetchApi(EApi.TASKBOARD + state.currentTaskBoardId + "/" + _id , 'PUT' , {task_id : taskId , sourse_id : containerID })
+    await fetchApi(EApi.TASKBOARD + state.currentTaskBoardId + "/" + _id , 'PUT' , {task_id : taskId , sourse_id : containerID })
   };
 
   return (
