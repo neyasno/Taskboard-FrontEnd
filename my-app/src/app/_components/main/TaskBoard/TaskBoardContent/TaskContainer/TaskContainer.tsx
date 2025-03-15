@@ -12,6 +12,7 @@ import { ContentStatus, setTasksStatus } from '@/store/slices/taskBoardsSlice'
 export type TaskContainerProps ={
     _id : string
     title : string 
+    position? : number
 }
 
 export default function TaskContainer({title , _id} : TaskContainerProps) {

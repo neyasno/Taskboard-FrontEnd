@@ -31,8 +31,29 @@ export async function PUT(req: Request , {params} : { params : { board_id : stri
       return NextResponse.json({ error: `User Access Error` }, { status: 403 });
     }
      
-    taskContainer.title = body.title
-    taskContainer.save()
+    if(body.title){
+      taskContainer.title = body.title
+    }
+
+    const oldPosition = taskContainer.position;
+    const newPosition = oldPosition + body.position;
+
+    for ( const containerId of taskBoard.taskContainers!){
+      const container : ITaskContainer | null = await TaskContainer.findById(containerId)
+      
+      if(container){
+      
+        if(container.position == oldPosition){
+          container.position = newPosition
+          container.save()
+        }
+        else if(container.position == newPosition){
+          container.position = oldPosition
+          container.save()
+        }
+
+      }
+    }    
     
     return NextResponse.json("ok", { status: 200 });
     

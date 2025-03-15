@@ -8,7 +8,8 @@ import NewTaskboardForm from './NewTaskboardForm';
 import NewTaskForm from './NewTaskForm';
 import NewContainerForm from './NewContainerForm';
 import ChangeTaskboardTitleForm from './ChangeTaskboardTitleForm';
-import ChangeContainerTitleForm from './ChangeContainerTitleForm';
+import ChangeContainerForm from './ChangeContainerForm';
+
 
 export default function Modal() {
     const state = useAppSelector(state => state.modal)
@@ -32,7 +33,7 @@ export default function Modal() {
               </BaseModalLayout>;
       case ModalType.ChangeContainerTitle:
         return <BaseModalLayout>
-                <ChangeContainerTitleForm/>
+                <ChangeContainerForm/>
               </BaseModalLayout>;
       case ModalType.NewContainer:
         return <BaseModalLayout>

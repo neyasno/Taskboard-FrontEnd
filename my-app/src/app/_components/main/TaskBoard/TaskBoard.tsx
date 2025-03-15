@@ -21,8 +21,12 @@ export default function TaskBoard() {
     const fetchTaskBoard = async ()=> {
       if(state.currentTaskBoardId != "0"){
         console.log("state.currentTaskBoardId")
-        const res = await fetchApi(EApi.TASKBOARD + state.currentTaskBoardId , 'GET')
+        const res : TaskContainerProps[] = await fetchApi(EApi.TASKBOARD + state.currentTaskBoardId , 'GET')
+        
+        res.sort((a , b) => a.position! - b.position!)
+
         console.log(res)
+
         setTaskContainers(res)
       }
     }

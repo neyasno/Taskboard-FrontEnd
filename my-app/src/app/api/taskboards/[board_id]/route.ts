@@ -95,7 +95,7 @@ export async function POST(req: Request , {params} : { params : { board_id : str
       return NextResponse.json({ error: `User Access Error` }, { status: 403 });
     }
 
-    const newTaskContainer = await TaskContainer.create({title : body.title })
+    const newTaskContainer = await TaskContainer.create({title : body.title , position: taskBoard.taskContainers!.length+1})
     taskBoard.taskContainers?.push(newTaskContainer._id)
     taskBoard.save()
 
