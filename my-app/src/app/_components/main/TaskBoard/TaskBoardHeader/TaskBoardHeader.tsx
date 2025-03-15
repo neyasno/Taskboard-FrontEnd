@@ -4,6 +4,7 @@ import Users from './components/Users'
 import History from './components/History'
 import DeleteButton from './components/DeleteButton'
 import CreateContainerButton from './components/CreateContainerButton'
+import ChangeTaskBoardTitle from './components/ChangeTaskBoardTitle'
 
 export default function TaskBoardHeader() {
   return (
@@ -11,6 +12,7 @@ export default function TaskBoardHeader() {
         <CreateContainerButton/>
         <Search/>
         <Users/>
+        <ChangeTaskBoardTitle/>
         {/* <History/> */}
         <DeleteButton/>
     </nav>
