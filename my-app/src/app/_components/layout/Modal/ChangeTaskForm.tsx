@@ -40,12 +40,32 @@ export default function ChangeTaskForm({}) {
         }
     }
 
+    const handleDelete = async () => {
+        try {
+            await fetchApi(apiPath, 'DELETE');
+            dispatch(setTasksStatus(ContentStatus.NOT_ACTUAL));
+        }
+        catch (error) {
+            console.log(error);
+        }finally{
+            dispatch(setModalType(ModalType.None)); 
+        }
+    }
+
     return (
         <div className='flex flex-col gap-2'>
             <TextInput placeholder="Title" value={task.title} handleChange={value => setTask(prev =>({ ...prev, title: value }))}/>
             <TextInput placeholder="Description" value={task.description} handleChange={value => setTask(prev =>({...prev, description: value}))}/>
             <Button text={`Status: ${task.isCompleted ? "Complete" : "Incomplete"}`} handleClick={() => setTask(prev => ({...prev, isCompleted: !prev.isCompleted}))}/>
             <Button text="Change" handleClick={handleChange}/>
+            
+            <button className='w-full py-2 border-2 transition mt-5 
+                        px-1 md:px-3
+                        text-center 
+                        border-red-500 text-red-500 hover:bg-red-500 hover:text-white'
+
+                    onClick={handleDelete}>{"Delete"}
+            </button>
         </div>
     );
 }

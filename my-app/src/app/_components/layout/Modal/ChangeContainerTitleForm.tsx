@@ -5,7 +5,7 @@ import { ModalType, setModalType } from '@/store/slices/modalSlice';
 import fetchApi from '@/utils/fetchApi';
 import { EApi } from '@/enums';
 import { useAppDispatch, useAppSelector } from '@/store/store';
-import { ContentStatus, setContainerStatus, setTaskBoardsStatus } from '@/store/slices/taskBoardsSlice';
+import { ContentStatus, setContainerStatus } from '@/store/slices/taskBoardsSlice';
 
 export default function ChangeContainerTitleForm() {
     const [title , setTitle] = useState("");
