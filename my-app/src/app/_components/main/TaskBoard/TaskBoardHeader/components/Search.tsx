@@ -4,14 +4,14 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import React, { useState } from 'react'
 
-export default function Search() {
+export default function Search({className}: {className?: string}) {
 
   const [text, setText] = useState('');
 
   const {theme , setTheme} = useTheme();
 
   return (
-    <div className='flex bg-white dark:bg-black rounded-md'>
+    <div className={`flex bg-white dark:bg-black rounded-md ${className? className : ''}`}>
       <input 
         className='px-3 py-1 bg-transparent '
         value={text} placeholder={"Search"}

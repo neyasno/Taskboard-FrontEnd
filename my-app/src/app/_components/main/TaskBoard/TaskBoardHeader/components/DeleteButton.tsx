@@ -7,7 +7,7 @@ import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import React from 'react'
 
-export default function DeleteButton() {
+export default function DeleteButton({className}: {className?: string}) {
 
   const currentTaskBoardId = useAppSelector(state => state.taskBoards.currentTaskBoardId)
   const {theme, setTheme} = useTheme();
@@ -18,7 +18,7 @@ export default function DeleteButton() {
   };
 
   return (
-    <button className='flex rounded-full p-2 hover:bg-black' onClick={deleteHandler}>
+    <button className={`flex rounded-full p-2 hover:bg-black ${className? className : ""}`} onClick={deleteHandler}>
       <Image alt='delete' src={ theme == 'dark' ? '/cross.svg' :'dark/cross.svg'} width={20} height={20}/>
     </button>
 );

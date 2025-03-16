@@ -73,7 +73,7 @@ export default function TaskBoardList() {
       {isLoading? 
         <Loading/> 
         : 
-        <ul className='flex gap-1'>
+        <ul className='flex gap-1 overflow-x-scroll overflow-y-hidden sm:overflow-clip'>
           {taskBoards.map((item , index) => <TaskBoardHead     
                                                            _id={item._id}  
                                                            title={item.title} 
