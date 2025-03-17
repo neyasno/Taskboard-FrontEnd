@@ -12,7 +12,7 @@ export default function TaskBoardContent({taskContainers} : {taskContainers : Ta
     },[currentTaskBoardId])
 
   return (
-    <ul className='flex gap-2 overflow-x-scroll'>
+    <ul className='flex flex-col sm:flex-row gap-2 overflow-x-scroll'>
         {taskContainers.map( (tc, index) => <TaskContainer title={tc.title} key={tc._id} _id={tc._id}/>)}
     </ul>
   )

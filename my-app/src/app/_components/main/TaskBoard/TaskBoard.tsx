@@ -32,7 +32,6 @@ export default function TaskBoard() {
     }
     
     fetchTaskBoard().finally(()=>{
-      console.log("EFFFFFFF2222")
       setTimeout(()=>{},2000)
       dispatch(setContainerStatus(ContentStatus.ACTUAL))
     })
