@@ -10,6 +10,9 @@
     },
     "main":{
         "taskboard":{
+            "buttons":{
+                "create_new_category":"New Category+"
+            },
             "forms":{
                 "new_taskboard": {
                     "title": "Title",
@@ -22,6 +25,27 @@
                     "description": "Description",
                     "priority": "Priority",
                     "create_task": "Create"
+                },
+                "new_category":{
+                    "title": "Title",
+                    "create_category": "Create"
+                },
+                "taskboard_settings":{
+                    "title": "Title",
+                    "change_taskboard":"Change"
+                },
+                "category_settings":{
+                    "title":"Title",
+                    "change_category":"Change"
+                },
+                "task_settings":{
+                    "title": "Title",
+                    "description": "Description",
+                    "status_message": "Status",
+                    "status_complete": "Complete",
+                    "status_incomplete": "Incomplete",
+                    "change_task": "Change",
+                    "delete_task": "Delete"
                 }
             }
         }

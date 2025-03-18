@@ -10,6 +10,9 @@
     },
     "main":{
         "taskboard":{
+            "buttons":{
+                "create_new_category":"Новая Категория"
+            },
             "forms":{
                 "new_taskboard":{
                     "title": "Название",
@@ -22,6 +25,27 @@
                     "description": "Описание",
                     "priority": "Приоритет",
                     "create_task": "Создать"
+                },
+                "new_category":{
+                    "title": "Название",
+                    "create_category": "Создать"
+                },
+                "taskboard_settings":{
+                    "title": "Название",
+                    "change_taskboard":"Изменить"
+                },
+                "category_settings":{
+                    "title":"Название",
+                    "change_category":"Изменить"
+                },
+                "task_settings":{
+                    "title": "Название",
+                    "description": "Описание",
+                    "status_message": "Статус",
+                    "status_complete": "Завершено",
+                    "status_incomplete": "Незавершено",
+                    "change_task": "Изменить",
+                    "delete_task": "Удалить"
                 }
             }
         }

@@ -7,12 +7,14 @@ import { EApi } from '@/enums';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { ModalType, setModalType } from '@/store/slices/modalSlice';
 import { ContentStatus, setContainerStatus } from '@/store/slices/taskBoardsSlice';
+import { useTranslations } from 'next-intl';
 
 export default function NewContainerForm() {
   const [title , setTitle] = useState("");
   
   const current_id = useAppSelector(state => state.taskBoards.currentTaskBoardId)
   const dispatcher = useAppDispatch()
+  const t = useTranslations('components.main.taskboard.forms.new_category')
 
   const createContainerReq = async (e : React.MouseEvent<HTMLElement,MouseEvent>) =>{
     e.preventDefault()
@@ -25,8 +27,8 @@ export default function NewContainerForm() {
 
   return (
     <div className='flex flex-col gap-2'>
-        <TextInput value={title} handleChange={setTitle} placeholder='title'/>
-        <Button text='Create' handleClick={createContainerReq}/>
+        <TextInput value={title} handleChange={setTitle} placeholder={t('title')}/>
+        <Button text={t('create_category')} handleClick={createContainerReq}/>
     </div>
   )
 }

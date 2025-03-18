@@ -8,6 +8,7 @@ import fetchApi from "@/utils/fetchApi";
 import { EApi } from "@/enums";
 import { ModalType, setModalType } from "@/store/slices/modalSlice";
 import { ContentStatus, setTasksStatus } from "@/store/slices/taskBoardsSlice";
+import { useTranslations } from "next-intl";
 
 
 export default function NewTaskForm({}) {
@@ -17,7 +18,7 @@ export default function NewTaskForm({}) {
 
     const {currentContainerId , currentTaskBoardId} = useAppSelector(state => state.taskBoards)
     const dispatcher = useAppDispatch()
-
+    const t = useTranslations('components.main.taskboard.forms.new_task')
 
     const createContainerReq = async (e : React.MouseEvent<HTMLElement,MouseEvent>) =>{
         e.preventDefault()
@@ -34,9 +35,9 @@ export default function NewTaskForm({}) {
 
     return (
         <div className='flex flex-col gap-2'>
-            <TextInput value={title} handleChange={setTitle} placeholder='title'/>
-            <TextInput value={description} handleChange={setDescription} placeholder='description'/>
-            <Button text='Create' handleClick={createContainerReq}/>
+            <TextInput value={title} handleChange={setTitle} placeholder={t('title')}/>
+            <TextInput value={description} handleChange={setDescription} placeholder={t('description')}/>
+            <Button text={t('create_task')} handleClick={createContainerReq}/>
         </div>
     );
 }

@@ -11,37 +11,9 @@ import { ContentStatus, setCurrentTaskBoard, setTaskBoardsStatus } from '@/store
 import { ETaskBoardStatus } from './StatusIndicator'
 import { ITaskBoard } from '@/_server/models/Taskboard'
 
-const testBoards = [
-  {
-    title : "Decode Team" ,
-    status : ETaskBoardStatus.COMPLETED ,
-    _id: "0" , 
-  },
-  {
-    title : "sEFDAS Team" ,
-    status : ETaskBoardStatus.COMPLETED ,
-    _id: "3" , 
-  },
-  {
-    title : "aLABAMA Team" ,
-    status : ETaskBoardStatus.IN_WORK,
-    _id: "2" , 
-  },
-  {
-    title : "PROJECT 1" ,
-    status : ETaskBoardStatus.EXPIRED ,
-    _id: "4" , 
-  },
-  {
-    title : "Sasha shop" ,
-    status : ETaskBoardStatus.COMPLETED ,
-    _id: "5" , 
-  },
-]
-
 export default function TaskBoardList() {
 
-  const [taskBoards , setTaskBoards] = useState<TaskBoardHeadProps[]>(testBoards) 
+  const [taskBoards , setTaskBoards] = useState<TaskBoardHeadProps[]>([]) 
   const [isLoading , setIsLoading] = useState(true)
   
   const taskBoardsStatus = useAppSelector(state => state.taskBoards.taskBoardsStatus)

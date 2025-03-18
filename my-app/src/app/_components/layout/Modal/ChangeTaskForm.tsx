@@ -7,12 +7,14 @@ import fetchApi from "@/utils/fetchApi";
 import { EApi } from "@/enums";
 import { ModalType, setModalType } from "@/store/slices/modalSlice";
 import { ContentStatus, setTasksStatus } from "@/store/slices/taskBoardsSlice";
+import { useTranslations } from "next-intl";
 
 export default function ChangeTaskForm({}) {
     const dispatch = useAppDispatch();
     
     const {currentContainerId, currentTaskBoardId, currentTaskId} = useAppSelector(state => state.taskBoards);
     const apiPath = EApi.TASKBOARD + currentTaskBoardId + "/" + currentContainerId + "/" + currentTaskId;
+    const t = useTranslations('components.main.taskboard.forms.task_settings');
 
     const [task, setTask] = useState<TaskProps>({
         title: "",
@@ -54,17 +56,17 @@ export default function ChangeTaskForm({}) {
 
     return (
         <div className='flex flex-col gap-2'>
-            <TextInput placeholder="Title" value={task.title} handleChange={value => setTask(prev =>({ ...prev, title: value }))}/>
-            <TextInput placeholder="Description" value={task.description} handleChange={value => setTask(prev =>({...prev, description: value}))}/>
-            <Button text={`Status: ${task.isCompleted ? "Complete" : "Incomplete"}`} handleClick={() => setTask(prev => ({...prev, isCompleted: !prev.isCompleted}))}/>
-            <Button text="Change" handleClick={handleChange}/>
+            <TextInput placeholder={t('title')} value={task.title} handleChange={value => setTask(prev =>({ ...prev, title: value }))}/>
+            <TextInput placeholder={t('description')} value={task.description} handleChange={value => setTask(prev =>({...prev, description: value}))}/>
+            <Button text={`${t('status_message')}: ${task.isCompleted ? t('status_complete') : t('status_incomplete')}`} handleClick={() => setTask(prev => ({...prev, isCompleted: !prev.isCompleted}))}/>
+            <Button text={t('change_task')} handleClick={handleChange}/>
             
             <button className='w-full py-2 border-2 transition mt-5 
                         px-1 md:px-3
                         text-center 
                         border-red-500 text-red-500 hover:bg-red-500 hover:text-white'
 
-                    onClick={handleDelete}>{"Delete"}
+                    onClick={handleDelete}>{t('delete_task')}
             </button>
         </div>
     );
